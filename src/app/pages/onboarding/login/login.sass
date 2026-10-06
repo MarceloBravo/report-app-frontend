@@ -1,0 +1,527 @@
+@use '../../../../styles/fonts'
+@use '../../../../styles/tokens' as t
+
+:host
+  @include t.tokens
+  display: block
+
+.login
+  position: relative
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 100%
+  min-height: 100vh
+  min-height: 100dvh
+  padding: t.space('gutter')
+  overflow: hidden
+
+  @include t.from(t.$breakpoint-md)
+    padding: t.space('gutter-desktop')
+
+.login__backdrop
+  position: absolute
+  inset: 0
+  background-color: t.color('surface')
+  pointer-events: none
+
+.login__glow
+  position: absolute
+  border-radius: 50%
+  filter: blur(4rem)
+
+  &--primary
+    top: -10rem
+    left: -10rem
+    width: 24rem
+    height: 24rem
+    background-color: t.alpha('primary', 0.1)
+
+  &--secondary
+    right: -8rem
+    bottom: -8rem
+    width: 32rem
+    height: 32rem
+    background-color: t.alpha('primary-container', 0.1)
+
+  &--center
+    top: 50%
+    left: 50%
+    width: 40rem
+    height: 40rem
+    background-color: t.alpha('surface-container-high', 0.4)
+    filter: blur(120px)
+    transform: translate(-50%, -50%)
+
+.login__content
+  position: relative
+  z-index: 1
+  display: grid
+  grid-template-columns: 1fr
+  align-items: center
+  gap: 2rem
+  width: 100%
+  max-width: 72rem
+
+  @include t.from(t.$breakpoint-lg)
+    grid-template-columns: repeat(12, minmax(0, 1fr))
+
+.login__main,
+.login__aside
+  display: flex
+  flex-direction: column
+
+.login__main
+  gap: 1.5rem
+
+  @include t.from(t.$breakpoint-lg)
+    grid-column: span 7
+
+.login__aside
+  gap: 1.25rem
+
+  @include t.from(t.$breakpoint-lg)
+    grid-column: span 5
+
+.panel
+  display: flex
+  flex-direction: column
+  border-radius: t.radius('xl')
+
+  &--primary
+    gap: 2rem
+    padding: 2rem
+    background-color: t.alpha('surface-container', 0.85)
+    box-shadow: t.$shadow-xl
+    backdrop-filter: blur(12px)
+
+    @include t.from(t.$breakpoint-md)
+      padding: 2.5rem
+
+  &--secondary
+    gap: 1rem
+    padding: 1.5rem
+    background-color: t.alpha('surface-container', 0.7)
+    box-shadow: t.$shadow-md
+    backdrop-filter: blur(12px)
+
+  &--compact
+    gap: 0.75rem
+
+  &__header
+    display: flex
+    align-items: center
+    justify-content: space-between
+    gap: 1rem
+
+  &__eyebrow
+    display: flex
+    align-items: center
+    gap: 0.5rem
+    margin: 0
+    @include t.type('label-sm')
+    color: t.color('tertiary')
+    text-transform: uppercase
+
+    &--primary
+      color: t.color('primary')
+
+  &__meta
+    @include t.type('code-sm')
+    color: t.color('outline')
+
+  &__title
+    margin: 0 0 0.375rem
+    @include t.type('headline-md')
+    color: t.color('on-surface')
+
+  &__subtitle
+    margin: 0
+    @include t.type('body-md')
+    color: t.color('on-surface-variant')
+
+  &__subheading
+    margin: 0 0 0.25rem
+    @include t.type('headline-sm')
+    color: t.color('on-surface')
+
+  &__text
+    margin: 0
+    @include t.type('body-sm')
+    color: t.color('on-surface-variant')
+
+.brand
+  display: flex
+  align-items: center
+  gap: 0.75rem
+
+  &__mark
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 2.5rem
+    height: 2.5rem
+    color: t.color('on-primary-fixed')
+    background-color: t.color('primary-container')
+    border-radius: t.radius('lg')
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px t.alpha('primary-container', 0.2)
+
+  &__labels
+    display: flex
+    flex-direction: column
+
+  &__name
+    @include t.type('headline-sm')
+    color: t.color('on-surface')
+
+  &__domain
+    color: t.color('primary')
+
+  &__tagline
+    @include t.type('label-sm')
+    color: t.color('outline')
+
+.badge
+  display: inline-flex
+  align-items: center
+  gap: 0.375rem
+  padding: 0.25rem 0.625rem
+  @include t.type('label-sm')
+  color: t.color('primary')
+  background-color: t.color('surface-container-highest')
+  border-radius: t.radius('full')
+
+  &__dot
+    width: 0.375rem
+    height: 0.375rem
+    background-color: t.color('primary')
+    border-radius: 50%
+    animation: dq-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite
+
+.form
+  display: flex
+  flex-direction: column
+  gap: 1.25rem
+
+  &__row
+    display: flex
+    align-items: center
+    justify-content: space-between
+    gap: 0.75rem
+    padding-top: 0.25rem
+
+  &__badge
+    display: flex
+    align-items: center
+    gap: 0.25rem
+    @include t.type('code-sm')
+    color: t.color('outline')
+
+    app-icon
+      color: t.color('tertiary')
+
+.field
+  display: flex
+  flex-direction: column
+  gap: 0.375rem
+
+  &__head
+    display: flex
+    align-items: center
+    justify-content: space-between
+    gap: 0.5rem
+
+  &__label
+    display: flex
+    align-items: center
+    justify-content: space-between
+    @include t.type('label-md')
+    color: t.color('on-surface-variant')
+
+  &__hint
+    @include t.type('code-sm')
+    color: t.color('outline')
+
+  &__control
+    position: relative
+    display: flex
+    align-items: center
+
+  &__icon
+    position: absolute
+    left: 0.875rem
+    display: flex
+    pointer-events: none
+    color: t.color('outline')
+
+  &__input
+    width: 100%
+    height: 2.75rem
+    padding: 0 1rem 0 2.75rem
+    border: 1px solid transparent
+    border-radius: t.radius('lg')
+    box-shadow: t.$shadow-inner
+    @include t.type('body-md')
+    color: t.color('on-surface')
+    background-color: t.color('surface-container-lowest')
+    transition: background-color 150ms ease
+
+    &::placeholder
+      color: t.color('outline')
+
+    &:focus
+      outline: none
+      background-color: t.color('surface-container-low')
+
+    &--with-action
+      padding-right: 2.75rem
+
+  &__action
+    position: absolute
+    right: 0.875rem
+    display: flex
+    padding: 0
+    color: t.color('outline')
+    background: none
+    border: 0
+    cursor: pointer
+    transition: color 150ms ease
+
+    &:hover
+      color: t.color('on-surface')
+
+    &:focus-visible
+      outline: 2px solid t.color('primary')
+      outline-offset: 2px
+
+  &__link
+    @include t.type('label-md')
+    color: t.color('primary')
+    text-decoration: none
+    white-space: nowrap
+
+    &:hover
+      text-decoration: underline
+
+  &__error
+    margin: 0
+    @include t.type('code-sm')
+    color: t.color('error')
+
+.checkbox
+  display: flex
+  align-items: center
+  gap: 0.625rem
+  cursor: pointer
+  user-select: none
+
+  &__input
+    width: 1rem
+    height: 1rem
+    background-color: t.color('surface-container-lowest')
+    accent-color: t.color('primary-container')
+    border-radius: t.radius('lg')
+    cursor: pointer
+
+    &:focus-visible
+      outline: 2px solid t.color('primary')
+      outline-offset: 2px
+
+  &__label
+    @include t.type('body-sm')
+    color: t.color('on-surface-variant')
+
+.submit
+  display: flex
+  align-items: center
+  justify-content: center
+  gap: 0.5rem
+  width: 100%
+  height: 3rem
+  margin-top: 0.5rem
+  border: 0
+  border-radius: t.radius('lg')
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px t.alpha('primary-container', 0.25)
+  @include t.type('body-lg')
+  font-weight: 600
+  color: t.color('on-primary')
+  background-color: t.color('primary-container')
+  cursor: pointer
+  transition: background-color 150ms ease, transform 150ms ease
+
+  &:hover:not(:disabled)
+    background-color: t.color('primary')
+
+  &:active:not(:disabled)
+    transform: scale(0.99)
+
+  &:disabled
+    cursor: not-allowed
+
+  &--success
+    background-color: t.color('primary')
+
+  &__icon--spin
+    animation: dq-spin 0.9s linear infinite
+
+.invite
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: space-between
+  gap: 0.75rem
+  padding: 1rem
+  padding-top: 1.5rem
+  background-color: t.alpha('surface-container-low', 0.4)
+  border-radius: t.radius('lg')
+
+  @include t.from(t.$breakpoint-sm)
+    flex-direction: row
+
+  &__text
+    @include t.type('body-sm')
+    color: t.color('on-surface-variant')
+    text-align: center
+
+    @include t.from(t.$breakpoint-sm)
+      text-align: left
+
+  &__link
+    display: flex
+    align-items: center
+    gap: 0.25rem
+    @include t.type('label-md')
+    font-weight: 500
+    color: t.color('primary')
+    text-decoration: none
+
+    &:hover
+      text-decoration: underline
+
+.compliance
+  display: grid
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+  gap: 0.5rem
+  margin: 0
+  padding-top: 0.5rem
+  list-style: none
+
+  &__item
+    display: flex
+    align-items: center
+    gap: 0.5rem
+    padding: 0.625rem
+    background-color: t.color('surface-container-lowest')
+    border-radius: t.radius('lg')
+
+    app-icon
+      color: t.color('primary')
+
+    span
+      @include t.type('code-sm')
+      color: t.color('on-surface')
+
+.engines
+  display: flex
+  flex-wrap: wrap
+  gap: 0.5rem
+  margin: 0
+  padding-top: 0.25rem
+  list-style: none
+
+  &__item
+    display: flex
+    align-items: center
+    gap: 0.5rem
+    padding: 0.375rem 0.75rem
+    background-color: t.color('surface-container-lowest')
+    border-radius: t.radius('lg')
+
+    span
+      @include t.type('code-sm')
+      color: t.color('on-surface')
+
+  &__dot
+    width: 0.5rem
+    height: 0.5rem
+    background-color: t.color('outline')
+    border-radius: 50%
+
+.engines__item[data-tone='primary'] .engines__dot
+  background-color: t.color('primary')
+
+.engines__item[data-tone='tertiary'] .engines__dot
+  background-color: t.color('tertiary')
+
+.engines__item[data-tone='secondary'] .engines__dot
+  background-color: t.color('secondary')
+
+.status-bar
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: 1rem
+  padding: 1rem
+  background-color: t.alpha('surface-container-lowest', 0.9)
+  border-radius: t.radius('xl')
+  box-shadow: t.$shadow-inner
+
+  &__info
+    display: flex
+    align-items: center
+    gap: 0.75rem
+
+  &__dot
+    width: 0.5rem
+    height: 0.5rem
+    background-color: t.color('primary-container')
+    border-radius: 50%
+    animation: dq-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite
+
+  &__text
+    display: flex
+    flex-direction: column
+
+  &__title
+    @include t.type('code-sm')
+    font-weight: 600
+    color: t.color('on-surface')
+
+  &__subtitle
+    @include t.type('code-sm')
+    color: t.color('outline')
+
+  &__badge
+    padding: 0.25rem 0.5rem
+    @include t.type('label-sm')
+    color: t.color('primary')
+    background-color: t.color('surface-container')
+    border-radius: t.radius('default')
+
+@keyframes dq-pulse
+  0%,
+  100%
+    opacity: 1
+
+  50%
+    opacity: 0.35
+
+@keyframes dq-ping
+  0%
+    opacity: 1
+    transform: scale(1)
+
+  75%,
+  100%
+    opacity: 0
+    transform: scale(2.4)
+
+@keyframes dq-spin
+  to
+    transform: rotate(360deg)
+
+@media (prefers-reduced-motion: reduce)
+  .badge__dot,
+  .status-bar__dot,
+  .submit__icon--spin
+    animation: none

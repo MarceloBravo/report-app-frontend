@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+// Base styles shared by every area of the app. Area tokens live in
+// src/styles/_tokens.sass and are consumed by each area's components.
+
+@use './tokens' as t
+
+html,
+body
+  margin: 0
+  padding: 0
+
+body
+  min-height: 100vh
+  overscroll-behavior: none
+  background-color: t.color('surface')
+  color: t.color('on-surface')
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif
+
+main > :first-child
+  margin-top: 0 !important
+
+main > :last-child
+  margin-bottom: 0 !important
+
+::-webkit-scrollbar
+  display: none

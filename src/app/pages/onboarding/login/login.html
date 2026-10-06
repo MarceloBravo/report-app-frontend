@@ -1,0 +1,199 @@
+<main class="login">
+  <div class="login__backdrop" aria-hidden="true">
+    <span class="login__glow login__glow--primary"></span>
+    <span class="login__glow login__glow--secondary"></span>
+    <span class="login__glow login__glow--center"></span>
+  </div>
+
+  <div class="login__content">
+    <section class="login__main">
+      <div class="panel panel--primary">
+        <header class="panel__header">
+          <div class="brand">
+            <span class="brand__mark">
+              <app-icon name="console" [size]="24" />
+            </span>
+            <span class="brand__labels">
+              <span class="brand__name">DataQuery<span class="brand__domain">.ai</span></span>
+              <span class="brand__tagline">SECURE CONSOLE</span>
+            </span>
+          </div>
+
+          <span class="badge">
+            <span class="badge__dot"></span>
+            Enterprise Text-to-SQL Studio
+          </span>
+        </header>
+
+        <div>
+          <h1 class="panel__title">Iniciar sesión en DataQuery AI</h1>
+          <p class="panel__subtitle">
+            Accede a tu motor de inteligencia de bases de datos relacionales y analíticas
+          </p>
+        </div>
+
+        <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+          <div class="field">
+            <label class="field__label" for="email">
+              <span>CORREO CORPORATIVO</span>
+              <span class="field__hint">REQUERIDO</span>
+            </label>
+            <div class="field__control">
+              <span class="field__icon">
+                <app-icon name="email" [size]="20" />
+              </span>
+              <input
+                class="field__input"
+                id="email"
+                type="email"
+                formControlName="email"
+                placeholder="tu-email@empresa.com"
+                autocomplete="email"
+              />
+            </div>
+            @if (email.touched && email.hasError('required')) {
+              <p class="field__error">El correo corporativo es obligatorio.</p>
+            } @else if (email.touched && email.hasError('email')) {
+              <p class="field__error">Introduce un correo corporativo válido.</p>
+            }
+          </div>
+
+          <div class="field">
+            <div class="field__head">
+              <label class="field__label" for="password">CONTRASEÑA</label>
+              <a class="field__link" href="#recuperar">¿Olvidaste tu contraseña?</a>
+            </div>
+            <div class="field__control">
+              <span class="field__icon">
+                <app-icon name="lock" [size]="20" />
+              </span>
+              <input
+                class="field__input field__input--with-action"
+                id="password"
+                [type]="passwordVisible() ? 'text' : 'password'"
+                formControlName="password"
+                placeholder="••••••••••••"
+                autocomplete="current-password"
+              />
+              <button
+                class="field__action"
+                type="button"
+                aria-label="Alternar visibilidad de contraseña"
+                [attr.aria-pressed]="passwordVisible()"
+                (click)="togglePasswordVisibility()"
+              >
+                <app-icon [name]="passwordVisible() ? 'eye-off' : 'eye'" [size]="20" />
+              </button>
+            </div>
+            @if (password.touched && password.hasError('required')) {
+              <p class="field__error">La contraseña es obligatoria.</p>
+            }
+          </div>
+
+          <div class="form__row">
+            <label class="checkbox">
+              <input
+                class="checkbox__input"
+                type="checkbox"
+                formControlName="rememberSession"
+              />
+              <span class="checkbox__label">Recordar sesión en este equipo</span>
+            </label>
+            <span class="form__badge">
+              <app-icon name="key" [size]="16" />
+              SSO Ready
+            </span>
+          </div>
+
+          <button
+            class="submit"
+            type="submit"
+            [class.submit--success]="status() === 'success'"
+            [disabled]="status() !== 'idle'"
+          >
+            @switch (status()) {
+              @case ('loading') {
+                <app-icon class="submit__icon submit__icon--spin" name="loading" [size]="20" />
+                <span>Verificando credenciales...</span>
+              }
+              @case ('success') {
+                <app-icon class="submit__icon" name="check-circle" [size]="20" />
+                <span>Autenticado con éxito</span>
+              }
+              @default {
+                <span>Iniciar Sesión</span>
+                <app-icon class="submit__icon" name="arrow-right" [size]="20" />
+              }
+            }
+          </button>
+        </form>
+
+        <div class="invite">
+          <span class="invite__text">¿No tienes una cuenta de organización?</span>
+          <a class="invite__link" href="/register">
+            <span>Registrar mi empresa y base de datos</span>
+            <app-icon name="chevron-right" [size]="16" />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <aside class="login__aside">
+      <section class="panel panel--secondary">
+        <p class="panel__eyebrow">
+          <app-icon name="shield-lock" [size]="20" />
+          Seguridad Criptográfica
+        </p>
+        <div>
+          <h2 class="panel__subheading">Cifrado de Extremo a Extremo</h2>
+          <p class="panel__text">
+            Conexiones SSL/TLS 1.3 con rotación de claves HSM. Tus esquemas y queries son
+            procesados en enclaves confidenciales sin almacenamiento no autorizado.
+          </p>
+        </div>
+        <ul class="compliance">
+          <li class="compliance__item">
+            <app-icon name="shield-check" [size]="18" />
+            <span>SOC2 Type II</span>
+          </li>
+          <li class="compliance__item">
+            <app-icon name="shield" [size]="18" />
+            <span>HIPAA / GDPR</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="panel panel--secondary panel--compact">
+        <div class="panel__header">
+          <p class="panel__eyebrow panel__eyebrow--primary">
+            <app-icon name="database" [size]="20" />
+            Motores Homologados
+          </p>
+          <span class="panel__meta">v4.1.2-core</span>
+        </div>
+        <p class="panel__text">
+          Sintaxis nativa y optimización algorítmica para los principales dialectos analíticos:
+        </p>
+        <ul class="engines">
+          @for (engine of engines; track engine.name) {
+            <li class="engines__item" [attr.data-tone]="engine.tone">
+              <span class="engines__dot"></span>
+              <span>{{ engine.name }}</span>
+            </li>
+          }
+        </ul>
+      </section>
+
+      <div class="status-bar">
+        <div class="status-bar__info">
+          <span class="status-bar__dot"></span>
+          <span class="status-bar__text">
+            <span class="status-bar__title">Cluster US-East Gateway</span>
+            <span class="status-bar__subtitle">Latencia de inferencia: 18ms</span>
+          </span>
+        </div>
+        <span class="status-bar__badge">ACTIVO</span>
+      </div>
+    </aside>
+  </div>
+</main>
