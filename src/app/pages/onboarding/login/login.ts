@@ -2,9 +2,7 @@ import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { Icon } from '../../../shared/ui/icon/icon';
-import { LoginServices } from '../../../services/login/login-services';
-import { TokenResponseInterface } from '../../../interfaces/tokenResponseInterface';
-import { saveRefreshToken } from '../../../utils/refreshToken';
+import { AuthServices } from '../../../services/auth/auth-services';
 import { Router } from '@angular/router';
 
 type LoginStatus = 'idle' | 'loading' | 'success';
@@ -39,7 +37,7 @@ export class Login {
 
   private pendingAuth?: number;
 
-  private loginServices: LoginServices = inject(LoginServices);
+  private authServices: AuthServices = inject(AuthServices);
   private router: Router = inject(Router);
 
   constructor() {
@@ -59,27 +57,23 @@ export class Login {
     const { email, password } = this.form.value;
     if (email && password) {
       this.status.set('loading');
-      this.loginServices.postLogin({ email, password }).subscribe({
-        next: (response) => {          
-          this.loginSuccessful(response as TokenResponseInterface);
+      this.authServices.login({ email, password }).subscribe({
+        next: () => {
+          this.loginSuccessful();
         },
-        error: (error: any) => {
-          this.loginFailed(error);
+        error: () => {
+          this.loginFailed();
         }
       });
     }
   }
 
-  private loginSuccessful(response: TokenResponseInterface): void {
-    debugger;
-    console.log('Login successful:', response);
+  private loginSuccessful(): void {
     this.status.set('success');
-    saveRefreshToken(response.refreshToken);
     this.router.navigate(['/register']);
   }
 
-  private loginFailed(error: any): void {
-    console.error('Login failed:', error);
+  private loginFailed(): void {
     this.form.markAllAsTouched();
     this.status.set('idle');
   }
