@@ -1,4 +1,5 @@
 @use '../../../../styles/fonts'
+@use '../../../../styles/form'
 @use '../../../../styles/tokens' as t
 
 :host
@@ -220,94 +221,6 @@
     app-icon
       color: t.color('tertiary')
 
-.field
-  display: flex
-  flex-direction: column
-  gap: 0.375rem
-
-  &__head
-    display: flex
-    align-items: center
-    justify-content: space-between
-    gap: 0.5rem
-
-  &__label
-    display: flex
-    align-items: center
-    justify-content: space-between
-    @include t.type('label-md')
-    color: t.color('on-surface-variant')
-
-  &__hint
-    @include t.type('code-sm')
-    color: t.color('outline')
-
-  &__control
-    position: relative
-    display: flex
-    align-items: center
-
-  &__icon
-    position: absolute
-    left: 0.875rem
-    display: flex
-    pointer-events: none
-    color: t.color('outline')
-
-  &__input
-    width: 100%
-    height: 2.75rem
-    padding: 0 1rem 0 2.75rem
-    border: 1px solid transparent
-    border-radius: t.radius('lg')
-    box-shadow: t.$shadow-inner
-    @include t.type('body-md')
-    color: t.color('on-surface')
-    background-color: t.color('surface-container-lowest')
-    transition: background-color 150ms ease
-
-    &::placeholder
-      color: t.color('outline')
-
-    &:focus
-      outline: none
-      background-color: t.color('surface-container-low')
-
-    &--with-action
-      padding-right: 2.75rem
-
-  &__action
-    position: absolute
-    right: 0.875rem
-    display: flex
-    padding: 0
-    color: t.color('outline')
-    background: none
-    border: 0
-    cursor: pointer
-    transition: color 150ms ease
-
-    &:hover
-      color: t.color('on-surface')
-
-    &:focus-visible
-      outline: 2px solid t.color('primary')
-      outline-offset: 2px
-
-  &__link
-    @include t.type('label-md')
-    color: t.color('primary')
-    text-decoration: none
-    white-space: nowrap
-
-    &:hover
-      text-decoration: underline
-
-  &__error
-    margin: 0
-    @include t.type('code-sm')
-    color: t.color('error')
-
 .checkbox
   display: flex
   align-items: center
@@ -330,39 +243,6 @@
   &__label
     @include t.type('body-sm')
     color: t.color('on-surface-variant')
-
-.submit
-  display: flex
-  align-items: center
-  justify-content: center
-  gap: 0.5rem
-  width: 100%
-  height: 3rem
-  margin-top: 0.5rem
-  border: 0
-  border-radius: t.radius('lg')
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px t.alpha('primary-container', 0.25)
-  @include t.type('body-lg')
-  font-weight: 600
-  color: t.color('on-primary')
-  background-color: t.color('primary-container')
-  cursor: pointer
-  transition: background-color 150ms ease, transform 150ms ease
-
-  &:hover:not(:disabled)
-    background-color: t.color('primary')
-
-  &:active:not(:disabled)
-    transform: scale(0.99)
-
-  &:disabled
-    cursor: not-allowed
-
-  &--success
-    background-color: t.color('primary')
-
-  &__icon--spin
-    animation: dq-spin 0.9s linear infinite
 
 .invite
   display: flex
@@ -516,12 +396,7 @@
     opacity: 0
     transform: scale(2.4)
 
-@keyframes dq-spin
-  to
-    transform: rotate(360deg)
-
 @media (prefers-reduced-motion: reduce)
   .badge__dot,
-  .status-bar__dot,
-  .submit__icon--spin
+  .status-bar__dot
     animation: none

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_blank" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=JetBrains+Mono:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-surface-variant":"#bcc9cd","surface-container":"#1c1f29","error":"#ffb4ab","inverse-surface":"#dfe2ef","surface-container-highest":"#31353f","on-surface":"#dfe2ef","surface":"#0f131c","on-secondary-fixed-variant":"#003ea8","on-error":"#690005","on-primary-container":"#00424f","surface-bright":"#353943","on-tertiary-fixed-variant":"#004b73","tertiary-fixed":"#cce5ff","on-primary-fixed":"#001f26","primary-fixed":"#acedff","surface-tint":"#4cd7f6","on-primary":"#003640","inverse-on-surface":"#2c303a","tertiary-fixed-dim":"#93ccff","surface-dim":"#0f131c","on-secondary-fixed":"#00174b","on-background":"#dfe2ef","secondary":"#b4c5ff","surface-container-lowest":"#0a0e17","on-tertiary-fixed":"#001d31","on-secondary-container":"#cdd7ff","secondary-fixed":"#dbe1ff","surface-variant":"#31353f","secondary-fixed-dim":"#b4c5ff","primary-container":"#06b6d4","secondary-container":"#0053db","inverse-primary":"#00687a","outline-variant":"#3d494c","primary-fixed-dim":"#4cd7f6","surface-container-high":"#262a34","error-container":"#93000a","surface-container-low":"#181b25","tertiary-container":"#4faef4","primary":"#4cd7f6","on-tertiary-container":"#004063","on-tertiary":"#003351","background":"#0f131c","on-secondary":"#002a78","on-primary-fixed-variant":"#004e5c","outline":"#869397","on-error-container":"#ffdad6","tertiary":"#93ccff"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"gutter-desktop":"1.25rem","gutter":"0.75rem","margin":"1rem","space-lg":"1.25rem","space-xl":"1.75rem","space-xs":"0.25rem","space-md":"0.875rem","space-sm":"0.5rem","margin-desktop":"2rem"},fontFamily:{"body-sm":["Geist"],"headline-sm":["Geist"],"label-sm":["JetBrains Mono"],"body-md":["Geist"],"code-sm":["JetBrains Mono"],"code-lg":["JetBrains Mono"],"body-lg":["Geist"],"label-md":["JetBrains Mono"],"code-md":["JetBrains Mono"],"headline-md":["Geist"],"headline-lg-mobile":["Geist"],"headline-lg":["Geist"]},fontSize:{"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"headline-sm":["18px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"label-sm":["10px",{"lineHeight":"12px","letterSpacing":"0.06em","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"code-sm":["11px",{"lineHeight":"14px","fontWeight":"400"}],"code-lg":["14px",{"lineHeight":"22px","letterSpacing":"-0.02em","fontWeight":"500"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"400"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"600"}],"code-md":["12px",{"lineHeight":"18px","letterSpacing":"-0.01em","fontWeight":"400"}],"headline-md":["22px",{"lineHeight":"28px","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-lg-mobile":["26px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-lg":["32px",{"lineHeight":"38px","letterSpacing":"-0.03em","fontWeight":"600"}]}}}}</script></head><body class="bg-background font-body-md text-on-surface min-h-screen flex flex-col justify-center items-center"><main class="w-full min-h-screen bg-surface flex flex-col justify-center items-center"><div class="flex flex-col w-full">
+<div class="w-full max-w-7xl mx-auto px-4 py-8 lg:py-12">
+<!-- Brand / Step Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+<div>
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-high mb-3">
+<span class="inline-block w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Enterprise Provisioning Engine</span>
+<span class="text-outline-variant font-label-sm text-label-sm">/</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">PostgreSQL Dialect</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">On-boarding & Conexión de Datos</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 max-w-2xl">
+          Configure la identidad del tenant institucional y vincule su cluster analítico para habilitar síntesis de consultas en lenguaje natural con DataQuery AI.
+        </p>
+</div>
+<!-- Step Counter Indicators -->
+<div class="flex items-center gap-3 bg-surface-container-low px-4 py-2.5 rounded-xl">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-primary-container text-on-primary-fixed flex items-center justify-center font-label-sm text-label-sm">01</span>
+<span class="font-label-sm text-label-sm text-on-surface">Organización</span>
+</div>
+<span class="w-6 h-0.5 bg-surface-container-highest"></span>
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-primary-container text-on-primary-fixed flex items-center justify-center font-label-sm text-label-sm">02</span>
+<span class="font-label-sm text-label-sm text-on-surface">Base de Datos</span>
+</div>
+<span class="w-6 h-0.5 bg-surface-container-highest"></span>
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-label-sm text-label-sm transition-colors" id="step3Badge">03</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Handshake</span>
+</div>
+</div>
+</div>
+<!-- Main Workspace Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Left Column: Form Sections (8 Cols) -->
+<form class="lg:col-span-8 flex flex-col gap-8" id="onboardingForm" onsubmit="event.preventDefault(); simulateRegistration();">
+<!-- SECTION 1: Datos de Organización y Usuario -->
+<section class="bg-surface-container-low rounded-xl p-6 lg:p-8 flex flex-col gap-6 shadow-xl relative overflow-hidden">
+<div class="absolute -right-16 -top-16 w-48 h-48 rounded-full bg-primary/5 blur-3xl pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg">domain</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-primary uppercase">Fase 1.0</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Datos de Organización y Cuenta Maestra</h2>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded bg-surface-container-highest font-label-sm text-label-sm text-on-surface-variant">Required</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<!-- a) Nombre Empresa -->
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1.5">
+<span>Nombre Empresa</span>
+<span class="text-primary">*</span>
+</label>
+<div class="relative">
+<input class="w-full h-11 px-3.5 bg-surface-container text-on-surface font-body-md text-body-md rounded-lg outline-none focus:bg-surface-container-high transition-colors" id="companyName" placeholder="Ej. Acorn Tech Solutions" required="" type="text" value="Acorn Tech Solutions"/>
+</div>
+</div>
+<!-- b) Slug o Subdominio -->
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="font-label-md text-label-md text-on-surface-variant flex items-center justify-between">
+<span class="flex items-center gap-1.5">
+<span>Slug institucional (Workspace Subdomain)</span>
+<span class="text-primary">*</span>
+</span>
+<span class="font-code-sm text-code-sm text-primary font-medium" id="resolvedDomain">https://acorn-tech.dataquery.ai</span>
+</label>
+<div class="flex items-center h-11 bg-surface-container rounded-lg px-3 overflow-hidden">
+<span class="font-code-sm text-code-sm text-on-surface-variant select-none">https://</span>
+<input class="flex-1 bg-transparent px-1.5 text-on-surface font-code-md text-code-md outline-none text-primary" id="slugInput" oninput="updateSlugPreview(this.value)" placeholder="acorn-tech" required="" type="text" value="acorn-tech"/>
+<span class="font-code-sm text-code-sm text-on-surface-variant select-none">.dataquery.ai</span>
+</div>
+</div>
+<!-- c) Nombre de usuario -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1.5">
+<span>Nombre de Usuario Master</span>
+<span class="text-primary">*</span>
+</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-3 text-lg text-outline">account_circle</span>
+<input class="w-full h-11 pl-10 pr-3.5 bg-surface-container text-on-surface font-code-md text-code-md rounded-lg outline-none focus:bg-surface-container-high transition-colors" id="usernameInput" placeholder="ej. admin_acorn" required="" type="text" value="admin_acorn"/>
+</div>
+</div>
+<!-- d) Email corporativo -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1.5">
+<span>Email Corporativo</span>
+<span class="text-primary">*</span>
+</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-3 text-lg text-outline">alternate_email</span>
+<input class="w-full h-11 pl-10 pr-3.5 bg-surface-container text-on-surface font-body-md text-body-md rounded-lg outline-none focus:bg-surface-container-high transition-colors" id="emailInput" placeholder="contacto@acorn.com" required="" type="email" value="contacto@acorn.com"/>
+</div>
+</div>
+<!-- e) Password con medidor de fuerza -->
+<div class="flex flex-col gap-2 md:col-span-2">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1.5">
+<span>Contraseña Maestra DataQuery AI</span>
+<span class="text-primary">*</span>
+</label>
+<span class="font-label-sm text-label-sm text-primary uppercase" id="strengthLabel">Fuerza: Alta (94/100)</span>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-3 text-lg text-outline">lock</span>
+<input class="w-full h-11 pl-10 pr-10 bg-surface-container text-on-surface font-code-md text-code-md rounded-lg outline-none focus:bg-surface-container-high transition-colors" id="masterPassword" oninput="handlePasswordStrength(this.value)" placeholder="Ingrese clave segura" required="" type="password" value="S3cureP@ss_Acorn2025#"/>
+<button class="absolute right-3 top-3 text-outline hover:text-on-surface" onclick="togglePassVisibility('masterPassword', this)" type="button">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+</div>
+<!-- Strength meter bar -->
+<div class="grid grid-cols-4 gap-1.5 pt-1.5">
+<div class="h-1 rounded-full bg-primary" id="bar1"></div>
+<div class="h-1 rounded-full bg-primary" id="bar2"></div>
+<div class="h-1 rounded-full bg-primary" id="bar3"></div>
+<div class="h-1 rounded-full bg-primary" id="bar4"></div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Min. 12 caracteres, mayúsculas, dígitos y símbolos de terminal.</p>
+</div>
+</div>
+</section>
+<!-- SECTION 2: Configuración de Base de Datos de Destino -->
+<section class="bg-surface-container-low rounded-xl p-6 lg:p-8 flex flex-col gap-6 shadow-xl relative overflow-hidden">
+<div class="absolute -right-16 -top-16 w-48 h-48 rounded-full bg-secondary-container/10 blur-3xl pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-lg">database</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-secondary uppercase">Fase 2.0</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Configuración de Base de Datos de Destino</h2>
+</div>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-highest px-2.5 py-1 rounded">
+<span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+<span class="font-code-sm text-code-sm text-on-surface">SSL Enabled</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-5">
+<!-- f) Host DB -->
+<div class="flex flex-col gap-2 md:col-span-8">
+<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1.5">
+<span>Host de la Base de Datos (Endpoint o IP)</span>
+<span class="text-primary">*</span>
+</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-3 text-lg text-outline">dns</span>
+<input class="w-full h-11 pl-10 pr-3.5 bg-surface-container text-on-surface font-code-md text-code-md rounded-lg outline-none focus:bg-surface-container-high transition-colors" id="dbHost" placeholder="db.acorn-internal.aws.com" required="" type="text" value="db.acorn-internal.aws.com"/>
+</div>
+</div>
+<!-- g) Puerto DB -->
+<div class="flex flex-col gap-2 md:col-span-4">
+<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1.5">
+<span>Puerto</span>
+<span class="text-primary">*</span>
+</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-3 text-lg text-outline">tag</span>
+<input class="w-full h-11 pl-10 pr-3.5 bg-surface-container text-on-surface font-code-md text-code-md rounded-lg outline-none focus:bg-surface-container-high transition-colors" id="dbPort" placeholder="5432" required="" type="number" value="5432"/>
+</div>
+</div>
+<!-- h) Nombre de la base de datos -->
+<div class="flex flex-col gap-2 md:col-span-6">
+<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1.5">
+<span>Nombre de la Base de Datos</span>
+<span class="text-primary">*</span>
+</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-3 text-lg text-outline">folder_data</span>
+<input class="w-full h-11 pl-10 pr-3.5 bg-surface-container text-on-surface font-code-md text-code-md rounded-lg outline-none focus:bg-surface-container-high transition-colors" id="dbName" placeholder="production_analytics" required="" type="text" value="production_analytics"/>
+</div>
+</div>
+<!-- h2) Schema por defecto -->
+<div class="flex flex-col gap-2 md:col-span-6">
+<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1.5">
+<span>Schema Predeterminado</span>
+<span class="text-primary">*</span>
+</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-3 text-lg text-outline">schema</span>
+<input class="w-full h-11 pl-10 pr-3.5 bg-surface-container text-on-surface font-code-md text-code-md rounded-lg outline-none focus:bg-surface-container-high transition-colors" id="dbSchema" placeholder="public" required="" type="text" value="public"/>
+</div>
+</div>
+<!-- i) Usuario DB -->
+<div class="flex flex-col gap-2 md:col-span-6">
+<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1.5">
+<span>Usuario DB (Read-Only Recomendado)</span>
+<span class="text-primary">*</span>
+</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-3 text-lg text-outline">badge</span>
+<input class="w-full h-11 pl-10 pr-3.5 bg-surface-container text-on-surface font-code-md text-code-md rounded-lg outline-none focus:bg-surface-container-high transition-colors" id="dbUser" placeholder="readonly_ai_user" required="" type="text" value="readonly_ai_user"/>
+</div>
+</div>
+<!-- j) Password DB -->
+<div class="flex flex-col gap-2 md:col-span-6">
+<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1.5">
+<span>Contraseña DB</span>
+<span class="text-primary">*</span>
+</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-3 text-lg text-outline">key</span>
+<input class="w-full h-11 pl-10 pr-10 bg-surface-container text-on-surface font-code-md text-code-md rounded-lg outline-none focus:bg-surface-container-high transition-colors" id="dbPassword" placeholder="Contraseña del usuario DB" required="" type="password" value="pg_ro_98df8!kQ20"/>
+<button class="absolute right-3 top-3 text-outline hover:text-on-surface" onclick="togglePassVisibility('dbPassword', this)" type="button">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Permissions Callout banner -->
+<div class="bg-surface-container p-4 rounded-lg flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl mt-0.5">verified_user</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Aislamiento de Seguridad Cero-Escritura</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                DataQuery AI aplica de forma estricta políticas <code class="font-code-sm text-code-sm text-primary">SELECT-ONLY</code> y tunnel cifrado TLS 1.3 sin retención permanente de filas sensibles.
+              </p>
+</div>
+</div>
+</section>
+<!-- Submit & Actions Row -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+<div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-base text-primary">terminal</span>
+<span>API Gateway ready: <span class="font-code-sm text-code-sm text-on-surface">POST /v1/tenants/provision</span></span>
+</div>
+<button class="w-full sm:w-auto h-12 px-8 rounded-lg bg-primary-container text-on-primary font-headline-sm text-headline-sm flex items-center justify-center gap-3 transition-transform active:scale-95 hover:brightness-110 shadow-lg" id="btnSubmit" type="submit">
+<span class="material-symbols-outlined text-xl">bolt</span>
+<span>Registrar y Conectar</span>
+</button>
+</div>
+</form>
+<!-- Right Column: System Diagnostics & Live JSON Confirmation (4 Cols) -->
+<aside class="lg:col-span-4 flex flex-col gap-6 lg:sticky lg:top-8">
+<!-- Live Topology Preview Card -->
+<div class="bg-surface-container-low rounded-xl p-5 shadow-xl flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Topología de Conexión</span>
+<span class="flex h-2 w-2 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+</div>
+<div class="bg-surface-container rounded-lg p-3.5 flex flex-col gap-3 font-code-sm text-code-sm">
+<div class="flex items-center justify-between text-on-surface">
+<span class="text-on-surface-variant">Cluster Engine</span>
+<span class="text-primary font-semibold">PostgreSQL v16.2</span>
+</div>
+<div class="flex items-center justify-between text-on-surface">
+<span class="text-on-surface-variant">Auth Protocol</span>
+<span class="text-on-surface">SCRAM-SHA-256</span>
+</div>
+<div class="flex items-center justify-between text-on-surface">
+<span class="text-on-surface-variant">Dialect Optimizer</span>
+<span class="text-secondary font-semibold">DataQuery Core LLM</span>
+</div>
+<div class="flex items-center justify-between text-on-surface">
+<span class="text-on-surface-variant">Connection Pool</span>
+<span class="text-emerald-400">PgBouncer (Ready)</span>
+</div>
+</div>
+</div>
+<!-- RESULTADO EXITOSO DEL REGISTRO (Initial simulated / response state) -->
+<div class="bg-surface-container-low rounded-xl p-6 shadow-2xl flex flex-col gap-5 transition-all duration-300" id="resultCard">
+<!-- Badge Header -->
+<div class="flex items-center justify-between">
+<div class="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 px-3 py-1.5 rounded-lg font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-base">check_circle</span>
+<span>Registro exitoso (HTTP 201 Created)</span>
+</div>
+<span class="font-code-sm text-code-sm text-on-surface-variant" id="pingMs">41ms</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Tenant inicializado y pool de conexiones verificado por el agente orquestador. Payload devuelto por el servicio:
+          </p>
+<!-- JSON Payload Container -->
+<div class="bg-surface-container-lowest rounded-lg p-4 font-code-sm text-code-sm text-on-surface overflow-x-auto relative group">
+<pre class="leading-relaxed"><span class="text-on-surface-variant">{</span>
+  <span class="text-primary">"tenantId"</span><span class="text-on-surface-variant">:</span> <span class="text-emerald-300">"tnt_98a72f10b4"</span><span class="text-on-surface-variant">,</span>
+  <span class="text-primary">"usuarioId"</span><span class="text-on-surface-variant">:</span> <span class="text-emerald-300">"usr_4402a81c7"</span><span class="text-on-surface-variant">,</span>
+  <span class="text-primary">"suscripcionId"</span><span class="text-on-surface-variant">:</span> <span class="text-emerald-300">"sub_enterprise_pro_2025"</span><span class="text-on-surface-variant">,</span>
+  <span class="text-primary">"dbConnectionId"</span><span class="text-on-surface-variant">:</span> <span class="text-emerald-300">"conn_pg_pool_891b"</span><span class="text-on-surface-variant">,</span>
+  <span class="text-primary">"emailVerificacionUrl"</span><span class="text-on-surface-variant">:</span> <span class="text-amber-300">"https://dataquery.ai/auth/verify?token=eyJh...98a"</span>
+<span class="text-on-surface-variant">}</span></pre>
+</div>
+<!-- Post-Registration Action Buttons -->
+<div class="flex flex-col gap-2.5 pt-1">
+<button class="w-full h-10 px-4 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md flex items-center justify-center gap-2 transition-colors" onclick="copyCredentials(this)" type="button">
+<span class="material-symbols-outlined text-base text-primary">content_copy</span>
+<span id="copyBtnText">Copiar Credenciales</span>
+</button>
+<button class="w-full h-11 px-4 rounded-lg bg-secondary text-on-secondary font-headline-sm text-headline-sm flex items-center justify-center gap-2 hover:brightness-110 active:scale-98 transition-all" onclick="goToStudio()" type="button">
+<span>Continuar al Studio / Workbench</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+<!-- Micro Schema Verification Status -->
+<div class="pt-2 flex items-center justify-between text-on-surface-variant font-code-sm text-code-sm">
+<span class="flex items-center gap-1.5">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              Schema: <strong class="text-on-surface font-medium">public</strong>
+</span>
+<span>Introspection: <strong class="text-emerald-400">Active</strong></span>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</div>
+<script>
+  function updateSlugPreview(val) {
+    const clean = val.toLowerCase().replace(/[^a-z0-9-]/g, '') || 'acorn-tech';
+    document.getElementById('resolvedDomain').innerText = `https://${clean}.dataquery.ai`;
+  }
+
+  function togglePassVisibility(id, btn) {
+    const el = document.getElementById(id);
+    const icon = btn.querySelector('.material-symbols-outlined');
+    if (el.type === 'password') {
+      el.type = 'text';
+      icon.innerText = 'visibility_off';
+    } else {
+      el.type = 'password';
+      icon.innerText = 'visibility';
+    }
+  }
+
+  function handlePasswordStrength(pass) {
+    const len = pass.length;
+    const bar1 = document.getElementById('bar1');
+    const bar2 = document.getElementById('bar2');
+    const bar3 = document.getElementById('bar3');
+    const bar4 = document.getElementById('bar4');
+    const label = document.getElementById('strengthLabel');
+
+    if (len < 6) {
+      label.innerText = 'Fuerza: Débil';
+      bar1.className = 'h-1 rounded-full bg-error';
+      bar2.className = 'h-1 rounded-full bg-surface-container-highest';
+      bar3.className = 'h-1 rounded-full bg-surface-container-highest';
+      bar4.className = 'h-1 rounded-full bg-surface-container-highest';
+    } else if (len < 10) {
+      label.innerText = 'Fuerza: Media';
+      bar1.className = 'h-1 rounded-full bg-amber-400';
+      bar2.className = 'h-1 rounded-full bg-amber-400';
+      bar3.className = 'h-1 rounded-full bg-surface-container-highest';
+      bar4.className = 'h-1 rounded-full bg-surface-container-highest';
+    } else {
+      label.innerText = 'Fuerza: Alta (94/100)';
+      bar1.className = 'h-1 rounded-full bg-primary';
+      bar2.className = 'h-1 rounded-full bg-primary';
+      bar3.className = 'h-1 rounded-full bg-primary';
+      bar4.className = 'h-1 rounded-full bg-primary';
+    }
+  }
+
+  function simulateRegistration() {
+    const submitBtn = document.getElementById('btnSubmit');
+    const step3 = document.getElementById('step3Badge');
+    const originalText = submitBtn.innerHTML;
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `
+      <span class="material-symbols-outlined animate-spin text-xl">progress_activity</span>
+      <span>Provisionando Gateway...</span>
+    `;
+
+    setTimeout(() => {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalText;
+      step3.classList.remove('bg-surface-container-highest', 'text-on-surface-variant');
+      step3.classList.add('bg-emerald-500', 'text-surface-container-lowest');
+
+      const card = document.getElementById('resultCard');
+      card.classList.add('scale-105');
+      setTimeout(() => card.classList.remove('scale-105'), 300);
+      
+      const ping = document.getElementById('pingMs');
+      ping.innerText = `${Math.floor(Math.random() * 20 + 30)}ms`;
+    }, 850);
+  }
+
+  function copyCredentials(btn) {
+    const payload = JSON.stringify({
+      "tenantId": "tnt_98a72f10b4",
+      "usuarioId": "usr_4402a81c7",
+      "suscripcionId": "sub_enterprise_pro_2025",
+      "dbConnectionId": "conn_pg_pool_891b",
+      "emailVerificacionUrl": "https://dataquery.ai/auth/verify?token=eyJh...98a"
+    }, null, 2);
+
+    navigator.clipboard.writeText(payload).then(() => {
+      const txt = document.getElementById('copyBtnText');
+      const original = txt.innerText;
+      txt.innerText = '¡Copiado al Portapapeles!';
+      btn.classList.add('text-primary');
+      setTimeout(() => {
+        txt.innerText = original;
+        btn.classList.remove('text-primary');
+      }, 2000);
+    });
+  }
+
+  function goToStudio() {
+    const slug = document.getElementById('slugInput').value || 'acorn-tech';
+    alert(`Redirigiendo a https://${slug}.dataquery.ai/studio/workbench...`);
+  }
+</script></main></body></html>

@@ -1,1 +1,437 @@
-<p>register works!</p>
+<main class="register">
+  <div class="register__header">
+    <div class="register__intro">
+      <div class="register__eyebrow">
+        <span class="register__eyebrow-dot"></span>
+        <span class="register__eyebrow-primary">Enterprise Provisioning Engine</span>
+        <span class="register__eyebrow-separator">/</span>
+        <span>PostgreSQL Dialect</span>
+      </div>
+      <h1 class="register__title">On-boarding &amp; Conexión de Datos</h1>
+      <p class="register__subtitle">
+        Configure la identidad del tenant institucional y vincule su cluster analítico para
+        habilitar síntesis de consultas en lenguaje natural con DataQuery AI.
+      </p>
+    </div>
+
+    <ol class="steps" aria-label="Progreso del registro">
+      <li class="steps__item steps__item--done">
+        <span class="steps__badge">01</span>
+        <span class="steps__label">Organización</span>
+      </li>
+      <li class="steps__divider" aria-hidden="true"></li>
+      <li class="steps__item steps__item--done">
+        <span class="steps__badge">02</span>
+        <span class="steps__label">Base de Datos</span>
+      </li>
+      <li class="steps__divider" aria-hidden="true"></li>
+      <li class="steps__item" [class.steps__item--done]="status() === 'success'">
+        <span class="steps__badge">03</span>
+        <span class="steps__label">Handshake</span>
+      </li>
+    </ol>
+  </div>
+
+  <div class="register__grid">
+    <form class="register__form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+      <section class="section">
+        <header class="section__header">
+          <span class="section__icon">
+            <app-icon name="domain" [size]="20" />
+          </span>
+          <div class="section__heading">
+            <span class="section__phase">Fase 1.0</span>
+            <h2 class="section__title">Datos de Organización y Cuenta Maestra</h2>
+          </div>
+          <span class="section__tag">Required</span>
+        </header>
+
+        <div class="section__grid">
+          <div class="field field--full">
+            <label class="field__label" for="nombreEmpresa">
+              <span>Nombre Empresa <span class="field__required">*</span></span>
+            </label>
+            <input
+              class="field__input"
+              id="nombreEmpresa"
+              type="text"
+              formControlName="nombreEmpresa"
+              placeholder="Ej. Acorn Tech Solutions"
+              autocomplete="organization"
+            />
+            @if (isInvalid('nombreEmpresa')) {
+              <p class="field__error">El nombre de la empresa es obligatorio.</p>
+            }
+          </div>
+
+          <div class="field field--full">
+            <label class="field__label" for="subdominioSlug">
+              <span>
+                Slug institucional (Workspace Subdomain)
+                <span class="field__required">*</span>
+              </span>
+              <span class="field__preview">{{ domainLabel }}</span>
+            </label>
+            <div class="slug">
+              <span class="slug__affix">https://</span>
+              <input
+                class="slug__input"
+                id="subdominioSlug"
+                type="text"
+                formControlName="subdominioSlug"
+                placeholder="acorn-tech"
+                autocapitalize="off"
+                spellcheck="false"
+              />
+              <span class="slug__affix">.dataquery.ai</span>
+            </div>
+            @if (isInvalid('subdominioSlug')) {
+              <p class="field__error">
+                Usa minúsculas, números y guiones (ej. acorn-tech).
+              </p>
+            }
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="nombre">
+              <span>Nombre de Usuario Master <span class="field__required">*</span></span>
+            </label>
+            <div class="field__control">
+              <span class="field__icon">
+                <app-icon name="account-circle" [size]="20" />
+              </span>
+              <input
+                class="field__input"
+                id="nombre"
+                type="text"
+                formControlName="nombre"
+                placeholder="ej. admin_acorn"
+                autocomplete="username"
+              />
+            </div>
+            @if (isInvalid('nombre')) {
+              <p class="field__error">El nombre de usuario es obligatorio.</p>
+            }
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="email">
+              <span>Email Corporativo <span class="field__required">*</span></span>
+            </label>
+            <div class="field__control">
+              <span class="field__icon">
+                <app-icon name="email" [size]="20" />
+              </span>
+              <input
+                class="field__input"
+                id="email"
+                type="email"
+                formControlName="email"
+                placeholder="contacto@acorn.com"
+                autocomplete="email"
+              />
+            </div>
+            @if (isInvalid('email')) {
+              <p class="field__error">Introduce un correo corporativo válido.</p>
+            }
+          </div>
+
+          <div class="field field--full">
+            <div class="field__head">
+              <label class="field__label" for="password">
+                <span>Contraseña Maestra DataQuery AI <span class="field__required">*</span></span>
+              </label>
+              <span class="strength__label" [attr.data-tone]="strength().tone">
+                Fuerza: {{ strength().label }}
+              </span>
+            </div>
+            <div class="field__control">
+              <span class="field__icon">
+                <app-icon name="lock" [size]="20" />
+              </span>
+              <input
+                class="field__input field__input--with-action"
+                id="password"
+                [type]="visiblePassword() === 'master' ? 'text' : 'password'"
+                formControlName="password"
+                placeholder="Ingrese clave segura"
+                autocomplete="new-password"
+              />
+              <button
+                class="field__action"
+                type="button"
+                aria-label="Alternar visibilidad de contraseña maestra"
+                (click)="togglePasswordVisibility('master')"
+              >
+                <app-icon [name]="visiblePassword() === 'master' ? 'eye-off' : 'eye'" [size]="20" />
+              </button>
+            </div>
+            <div class="strength" [attr.data-tone]="strength().tone" aria-hidden="true">
+              @for (bar of [1, 2, 3, 4]; track bar) {
+                <span class="strength__bar" [class.strength__bar--on]="bar <= strength().bars"></span>
+              }
+            </div>
+            @if (isInvalid('password')) {
+              <p class="field__error">Mínimo 12 caracteres.</p>
+            } @else {
+              <p class="field__hint">Min. 12 caracteres, mayúsculas, dígitos y símbolos.</p>
+            }
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <header class="section__header">
+          <span class="section__icon section__icon--secondary">
+            <app-icon name="database" [size]="20" />
+          </span>
+          <div class="section__heading">
+            <span class="section__phase section__phase--secondary">Fase 2.0</span>
+            <h2 class="section__title">Configuración de Base de Datos de Destino</h2>
+          </div>
+          <span class="section__ssl">
+            <span class="section__ssl-dot"></span>
+            SSL Enabled
+          </span>
+        </header>
+
+        <div class="section__grid section__grid--db">
+          <div class="field field--host">
+            <label class="field__label" for="host">
+              <span>Host de la Base de Datos (Endpoint o IP) <span class="field__required">*</span></span>
+            </label>
+            <div class="field__control">
+              <span class="field__icon">
+                <app-icon name="server" [size]="20" />
+              </span>
+              <input
+                class="field__input"
+                id="host"
+                type="text"
+                formControlName="host"
+                placeholder="db.acorn-internal.aws.com"
+                autocomplete="off"
+                spellcheck="false"
+              />
+            </div>
+            @if (isInvalid('host')) {
+              <p class="field__error">El host es obligatorio.</p>
+            }
+          </div>
+
+          <div class="field field--port">
+            <label class="field__label" for="puerto">
+              <span>Puerto <span class="field__required">*</span></span>
+            </label>
+            <div class="field__control">
+              <span class="field__icon">
+                <app-icon name="hash" [size]="20" />
+              </span>
+              <input
+                class="field__input"
+                id="puerto"
+                type="number"
+                formControlName="puerto"
+                placeholder="5432"
+                min="1"
+                max="65535"
+              />
+            </div>
+            @if (isInvalid('puerto')) {
+              <p class="field__error">Puerto entre 1 y 65535.</p>
+            }
+          </div>
+
+          <div class="field field--half">
+            <label class="field__label" for="dbName">
+              <span>Nombre de la Base de Datos <span class="field__required">*</span></span>
+            </label>
+            <div class="field__control">
+              <span class="field__icon">
+                <app-icon name="folder-data" [size]="20" />
+              </span>
+              <input
+                class="field__input"
+                id="dbName"
+                type="text"
+                formControlName="dbName"
+                placeholder="production_analytics"
+                autocomplete="off"
+                spellcheck="false"
+              />
+            </div>
+            @if (isInvalid('dbName')) {
+              <p class="field__error">El nombre de la base de datos es obligatorio.</p>
+            }
+          </div>
+
+          <div class="field field--half">
+            <label class="field__label" for="schemaName">
+              <span>Schema Predeterminado <span class="field__required">*</span></span>
+            </label>
+            <div class="field__control">
+              <span class="field__icon">
+                <app-icon name="schema" [size]="20" />
+              </span>
+              <input
+                class="field__input"
+                id="schemaName"
+                type="text"
+                formControlName="schemaName"
+                placeholder="public"
+                autocomplete="off"
+                spellcheck="false"
+              />
+            </div>
+            @if (isInvalid('schemaName')) {
+              <p class="field__error">El schema es obligatorio.</p>
+            }
+          </div>
+
+          <div class="field field--half">
+            <label class="field__label" for="dbUser">
+              <span>Usuario DB (Read-Only Recomendado) <span class="field__required">*</span></span>
+            </label>
+            <div class="field__control">
+              <span class="field__icon">
+                <app-icon name="badge" [size]="20" />
+              </span>
+              <input
+                class="field__input"
+                id="dbUser"
+                type="text"
+                formControlName="dbUser"
+                placeholder="readonly_ai_user"
+                autocomplete="off"
+                spellcheck="false"
+              />
+            </div>
+            @if (isInvalid('dbUser')) {
+              <p class="field__error">El usuario de la base de datos es obligatorio.</p>
+            }
+          </div>
+
+          <div class="field field--half">
+            <label class="field__label" for="dbPassword">
+              <span>Contraseña DB <span class="field__required">*</span></span>
+            </label>
+            <div class="field__control">
+              <span class="field__icon">
+                <app-icon name="key" [size]="20" />
+              </span>
+              <input
+                class="field__input field__input--with-action"
+                id="dbPassword"
+                [type]="visiblePassword() === 'db' ? 'text' : 'password'"
+                formControlName="dbPassword"
+                placeholder="Contraseña del usuario DB"
+                autocomplete="off"
+              />
+              <button
+                class="field__action"
+                type="button"
+                aria-label="Alternar visibilidad de contraseña de la base de datos"
+                (click)="togglePasswordVisibility('db')"
+              >
+                <app-icon [name]="visiblePassword() === 'db' ? 'eye-off' : 'eye'" [size]="20" />
+              </button>
+            </div>
+            @if (isInvalid('dbPassword')) {
+              <p class="field__error">La contraseña de la base de datos es obligatoria.</p>
+            }
+          </div>
+        </div>
+
+        <div class="callout">
+          <app-icon name="shield-check" [size]="24" />
+          <div class="callout__body">
+            <span class="callout__title">Aislamiento de Seguridad Cero-Escritura</span>
+            <p class="callout__text">
+              DataQuery AI aplica de forma estricta políticas
+              <code class="callout__code">SELECT-ONLY</code> y tunnel cifrado TLS 1.3 sin
+              retención permanente de filas sensibles.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      @if (status() === 'error') {
+        <div class="alert" role="alert">
+          <app-icon name="shield" [size]="20" />
+          <span>{{ errorMessage() }}</span>
+        </div>
+      }
+
+      <div class="actions">
+        <p class="actions__endpoint">
+          <app-icon name="console" [size]="16" />
+          <span>API Gateway ready: <code>POST /self-serve/registro</code></span>
+        </p>
+        <button class="submit" type="submit" [disabled]="status() === 'loading'">
+          @switch (status()) {
+            @case ('loading') {
+              <app-icon class="submit__icon--spin" name="loading" [size]="20" />
+              <span>Provisionando Gateway...</span>
+            }
+            @default {
+              <app-icon name="bolt" [size]="20" />
+              <span>Registrar y Conectar</span>
+            }
+          }
+        </button>
+      </div>
+    </form>
+
+    <aside class="register__aside">
+      <section class="topology">
+        <header class="topology__header">
+          <span class="topology__title">Topología de Conexión</span>
+          <span class="topology__ping"></span>
+        </header>
+        <dl class="topology__list">
+          <div class="topology__row">
+            <dt>Cluster Engine</dt>
+            <dd class="topology__value topology__value--primary">PostgreSQL v16.2</dd>
+          </div>
+          <div class="topology__row">
+            <dt>Auth Protocol</dt>
+            <dd class="topology__value">SCRAM-SHA-256</dd>
+          </div>
+          <div class="topology__row">
+            <dt>Dialect Optimizer</dt>
+            <dd class="topology__value topology__value--secondary">DataQuery Core LLM</dd>
+          </div>
+          <div class="topology__row">
+            <dt>Connection Pool</dt>
+            <dd class="topology__value topology__value--success">PgBouncer (Ready)</dd>
+          </div>
+        </dl>
+      </section>
+
+      @if (status() === 'success') {
+        <section class="result">
+          <header class="result__header">
+            <span class="result__badge">
+              <app-icon name="check-circle" [size]="16" />
+              Registro exitoso (HTTP 201 Created)
+            </span>
+          </header>
+          <p class="result__text">
+            Tenant inicializado y pool de conexiones verificado por el agente orquestador. Se
+            enviará un correo de verificación a la cuenta maestra.
+          </p>
+          <div class="result__actions">
+            <button class="result__continue" type="button" (click)="openStudio()">
+              <span>Continuar al Studio / Workbench</span>
+              <app-icon name="arrow-right" [size]="18" />
+            </button>
+          </div>
+          <footer class="result__footer">
+            <span>Schema: <strong>{{ form.controls.schemaName.value || 'public' }}</strong></span>
+            <span>Introspection: <strong>Active</strong></span>
+          </footer>
+        </section>
+      }
+    </aside>
+  </div>
+</main>
