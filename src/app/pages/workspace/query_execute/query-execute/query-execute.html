@@ -1,0 +1,174 @@
+<app-main-menu />
+<div class="pl-72">
+    <app-header />
+
+    <main class="w-full pt-16 bg-surface min-h-screen">
+        <div class="flex flex-col w-full px-8 py-8 space-y-6">
+            <!-- Breadcrumbs & Status Toolbar -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                
+                <div class="flex flex-col gap-1">
+                    
+                    <app-breadcrumbs></app-breadcrumbs>
+
+                    <div class="flex items-center gap-3 mt-1">
+                        <h1 class="text-2xl font-headline font-semibold text-on-surface tracking-tight">Ejecución y
+                            Resultados de
+                            Consulta</h1>
+                        <span
+                            class="inline-flex items-center gap-1-5 px-2-5 py-0-5 rounded-full text-11 font-label font-medium bg-emerald-500/10 text-emerald-400">
+                            <span class="w-1-5 h-1-5 rounded-full bg-emerald-400"></span>
+                            Exitosa (200 OK)
+                        </span>
+                    </div>
+
+                </div>                
+                <!-- Metadata Badges -->
+                <div class="flex flex-wrap items-center gap-2 font-label text-xs">
+                    <div
+                        class="flex items-center gap-1-5 px-3 py-1-5 rounded-md bg-surface-container text-on-surface-variant">
+                        <span class="material-symbols-outlined text-15 text-primary">timer</span>
+                        <span>48ms</span>
+                    </div>
+                    <div
+                        class="flex items-center gap-1-5 px-3 py-1-5 rounded-md bg-surface-container text-on-surface-variant">
+                        <span class="material-symbols-outlined text-15 text-tertiary">table_rows</span>
+                        <span>10 filas retornadas</span>
+                    </div>
+                    <div
+                        class="flex items-center gap-1-5 px-3 py-1-5 rounded-md bg-surface-container text-on-surface-variant">
+                        <span class="material-symbols-outlined text-15 text-primary-container">database</span>
+                        <span>PostgreSQL 16</span>
+                    </div>
+                    <div class="flex items-center gap-1-5 px-3 py-1-5 rounded-md bg-surface-container text-outline">
+                        <span class="material-symbols-outlined text-15">event</span>
+                        <span>08 Mar 2025, 14:32:10</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Section 1: Natural Language Prompt Display (Read-Only) -->
+                    <div class="rounded-xl bg-surface-container-low p-3-5 space-y-3 relative overflow-hidden">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary text-20">smart_toy</span>
+                        <span class="text-xs font-label uppercase tracking-wider text-outline font-semibold">Consulta en
+                            Lenguaje
+                            Natural del Usuario</span>
+                        <span
+                            class="px-2 py-0.5 rounded text-10 font-label font-medium bg-surface-container-high text-on-surface-variant">Sólo
+                            Lectura</span>
+                    </div>
+                    <button
+                        class="flex items-center gap-1-5 text-xs font-label text-on-surface-variant hover:text-primary transition-colors px-2 py-1 rounded bg-surface-container hover:bg-surface-container-high"
+                        (click)="copyPrompt()" title="Copiar prompt original">
+                        <span class="material-symbols-outlined text-14">content_copy</span>
+                        <span id="promptCopyFeedback">{{ promptCopyFeedback }}</span>
+                    </button>
+                </div>
+                    <div
+                    class="prompt-panel">
+                    <p class="font-medium" id="promptText">{{ promptText }}</p>
+                </div>
+            </div>
+
+
+            <!-- Section 2: Generated SQL Code Editor / Viewer -->
+            <div class="rounded-xl bg-surface-container-lowest flex flex-col overflow-hidden shadow-lg">
+                <!-- Top toolbar -->
+                <div class="flex items-center justify-between px-5 py-3 bg-surface-container-low text-xs font-label">
+                    <div class="flex items-center gap-3">
+                        <div class="flex items-center gap-1-5">
+                            <span class="w-2-5 h-2-5 rounded-full bg-error/60"></span>
+                            <span class="w-2-5 h-2-5 rounded-full bg-amber-400/60"></span>
+                            <span class="w-2-5 h-2-5 rounded-full bg-emerald-400/60"></span>
+                        </div>
+                        <span class="text-outline">|</span>
+                        <div class="flex items-center gap-2 text-on-surface-variant">
+                            <span class="material-symbols-outlined text-16 text-primary">code</span>
+                            <span class="font-semibold text-on-surface">SQL Generado</span>
+                            <span
+                                class="px-1-5 py-0-5 rounded text-10 bg-surface-container-high text-primary-fixed">PostgreSQL
+                                Dialect</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button
+                            class="flex items-center gap-1-5 px-3 py-1-5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors font-label text-11"
+                            (click)="copySql()">
+                            <span class="material-symbols-outlined text-15">file_copy</span>
+                            <span id="sqlCopyFeedback">{{ sqlCopyFeedback }}</span>
+                        </button>
+                        <button
+                            class="flex items-center gap-1-5 px-3 py-1-5 rounded-lg bg-primary text-on-primary hover:bg-primary-fixed transition-colors font-label font-medium text-11 shadow-sm">
+                            <span class="material-symbols-outlined text-15">play_arrow</span>
+                            <span>Re-ejecutar Consulta</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- SQL Code View with Line Numbers & Calibrated Syntax Styling -->
+                <div
+                    class="grid grid-cols-custom-3rem-1fr p-4 text-xs font-label leading-6 bg-surface-container-lowest overflow-x-auto selection:bg-primary/20 selection:text-primary">
+                    <!-- Line numbers -->
+                    <div class="select-none text-outline/40 text-right pr-4 font-mono space-y-0.5">
+                        <div>1</div>
+                        <div>2</div>
+                        <div>3</div>
+                        <div>4</div>
+                        <div>5</div>
+                        <div>6</div>
+                        <div>7</div>
+                        <div>8</div>
+                        <div>9</div>
+                        <div>10</div>
+                        <div>11</div>
+                        <div>12</div>
+                        <div>13</div>
+                        <div>14</div>
+                    </div>
+                    <!-- Code Body -->
+                    <pre class="text-on-surface font-label whitespace-pre m-0" id="sqlSnippet">
+                        <code>
+                            <textarea 
+                                id="sqlCode" 
+                                class="w-full h-full bg-transparent text-on-surface font-label resize-none outline-none"
+                                readonly
+                                [value]="rawSql">
+                            </textarea>
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            <!-- Section 3: Data Result Grid / Table -->
+            <app-grid-table/>
+            
+            <!-- Section 4: Bottom Navigation & Action Bar -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 pb-12">
+                <!-- Bottom-Left: Back to History -->
+                <a class="inline-flex items-center gap-2-5 px-4 py-2-5 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-headline text-xs font-medium transition-all group shadow-sm"
+                    data-path="historial-y-logs" href="#">
+                    <span
+                        class="material-symbols-outlined text-18 text-outline group-hover:text-primary group-hover:-translate-x-0-5 transition-all">arrow_back</span>
+                    <span>Volver al Historial de Consultas</span>
+                </a>
+                <!-- Bottom-Right: Contextual Next Actions -->
+                <div class="flex items-center gap-3">
+                    <button
+                        class="flex items-center gap-2 px-4 py-2-5 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface text-xs font-label transition-colors"
+                        (click)="exportTableToCSV('reporte_facturacion_q4_2024.csv')">
+                        <span class="material-symbols-outlined text-17">download</span>
+                        <span>Exportar Resultados (CSV)</span>
+                    </button>
+                    <a class="flex items-center gap-2 px-4 py-2-5 rounded-xl bg-primary hover:bg-primary-fixed text-on-primary text-xs font-headline font-semibold transition-colors shadow-sm"
+                        data-path="consulta-studio" href="#">
+                        <span class="material-symbols-outlined text-18">add_circle</span>
+                        <span>Nueva Consulta en Studio</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+
+</div>

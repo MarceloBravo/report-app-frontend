@@ -1,0 +1,209 @@
+<div class="rounded-xl bg-surface-container-low flex flex-col overflow-hidden shadow-md">
+    <!-- Grid Header and Export Actions -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-5 py-4 bg-surface-container">
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-20 text-primary">dataset</span>
+            <div>
+                <h2 class="text-sm font-headline font-semibold text-on-surface">Resultados Obtenidos</h2>
+                <span class="text-11 font-label text-outline">10 registros correspondientes a Q4
+                    2024</span>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <button
+                class="flex items-center gap-1-5 px-3 py-1-5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-xs font-label text-on-surface-variant hover:text-on-surface transition-colors"
+                (click)="exportCsv('resultados_consulta_qry_981a.csv')">
+                <span class="material-symbols-outlined text-15">file_download</span>
+                <span>Exportar CSV</span>
+            </button>
+            <button
+                class="flex items-center gap-1-5 px-3 py-1-5 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-xs font-label text-on-surface-variant hover:text-on-surface transition-colors"
+                (click)="exportJson()">
+                <span class="material-symbols-outlined text-15">data_object</span>
+                <span>JSON</span>
+            </button>
+        </div>
+    </div>
+    <!-- Responsive Table -->
+    <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs font-body">
+            <thead class="bg-surface-container-highest/60 text-outline text-11 font-label uppercase tracking-wider">
+                <tr>
+                    <th class="py-3 px-5 font-semibold" scope="col">#</th>
+                    <th class="py-3 px-5 font-semibold" scope="col">CLIENTE_ID</th>
+                    <th class="py-3 px-5 font-semibold" scope="col">NOMBRE_EMPRESA</th>
+                    <th class="py-3 px-5 font-semibold" scope="col">PAIS</th>
+                    <th class="py-3 px-5 font-semibold" scope="col">SEGMENTO</th>
+                    <th class="py-3 px-5 font-semibold text-right" scope="col">TOTAL_OPERACIONES</th>
+                    <th class="py-3 px-5 font-semibold text-right text-primary" scope="col">FACTURACION_USD
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="divide-y-0">
+                <tr class="hover:bg-surface-container-high/50 bg-surface-container-lowest/30 transition-colors">
+                    <td class="py-3 px-5 font-label text-outline">1</td>
+                    <td class="py-3 px-5 font-label font-medium text-primary">CLI-8941</td>
+                    <td class="py-3 px-5 font-semibold text-on-surface flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-primary"></span>
+                        Acorn Tech Global
+                    </td>
+                    <td class="py-3 px-5 text-on-surface-variant">España</td>
+                    <td class="py-3 px-5">
+                        <span
+                            class="px-2 py-0-5 rounded-full text-10 font-label font-medium bg-cyan-950 text-cyan-300">Enterprise</span>
+                    </td>
+                    <td class="py-3 px-5 text-right font-label text-on-surface">142</td>
+                    <td class="py-3 px-5 text-right font-label font-semibold text-primary">$482,950.00</td>
+                </tr>
+                <tr class="hover:bg-surface-container-high/50 bg-transparent transition-colors">
+                    <td class="py-3 px-5 font-label text-outline">2</td>
+                    <td class="py-3 px-5 font-label font-medium text-primary">CLI-7820</td>
+                    <td class="py-3 px-5 font-semibold text-on-surface flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-secondary"></span>
+                        Fintech Dynamics Corp
+                    </td>
+                    <td class="py-3 px-5 text-on-surface-variant">México</td>
+                    <td class="py-3 px-5">
+                        <span
+                            class="px-2 py-0-5 rounded-full text-10 font-label font-medium bg-cyan-950 text-cyan-300">Enterprise</span>
+                    </td>
+                    <td class="py-3 px-5 text-right font-label text-on-surface">98</td>
+                    <td class="py-3 px-5 text-right font-label font-semibold text-primary">$394,200.50</td>
+                </tr>
+                <tr class="hover:bg-surface-container-high/50 bg-surface-container-lowest/30 transition-colors">
+                    <td class="py-3 px-5 font-label text-outline">3</td>
+                    <td class="py-3 px-5 font-label font-medium text-primary">CLI-9031</td>
+                    <td class="py-3 px-5 font-semibold text-on-surface flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-tertiary"></span>
+                        NovaRetail Latam
+                    </td>
+                    <td class="py-3 px-5 text-on-surface-variant">Chile</td>
+                    <td class="py-3 px-5">
+                        <span
+                            class="px-2 py-0-5 rounded-full text-10 font-label font-medium bg-indigo-950 text-indigo-300">Corporate</span>
+                    </td>
+                    <td class="py-3 px-5 text-right font-label text-on-surface">120</td>
+                    <td class="py-3 px-5 text-right font-label font-semibold text-primary">$356,800.00</td>
+                </tr>
+                <tr class="hover:bg-surface-container-high/50 bg-transparent transition-colors">
+                    <td class="py-3 px-5 font-label text-outline">4</td>
+                    <td class="py-3 px-5 font-label font-medium text-primary">CLI-6419</td>
+                    <td class="py-3 px-5 font-semibold text-on-surface flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-secondary-fixed"></span>
+                        BioGenetics Lab
+                    </td>
+                    <td class="py-3 px-5 text-on-surface-variant">Colombia</td>
+                    <td class="py-3 px-5">
+                        <span
+                            class="px-2 py-0-5 rounded-full text-10 font-label font-medium bg-cyan-950 text-cyan-300">Enterprise</span>
+                    </td>
+                    <td class="py-3 px-5 text-right font-label text-on-surface">85</td>
+                    <td class="py-3 px-5 text-right font-label font-semibold text-primary">$312,450.00</td>
+                </tr>
+                <tr class="hover:bg-surface-container-high/50 bg-surface-container-lowest/30 transition-colors">
+                    <td class="py-3 px-5 font-label text-outline">5</td>
+                    <td class="py-3 px-5 font-label font-medium text-primary">CLI-5524</td>
+                    <td class="py-3 px-5 font-semibold text-on-surface flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-primary-container"></span>
+                        Andes Logistics SA
+                    </td>
+                    <td class="py-3 px-5 text-on-surface-variant">Perú</td>
+                    <td class="py-3 px-5">
+                        <span
+                            class="px-2 py-0-5 rounded-full text-10 font-label font-medium bg-blue-950 text-blue-300">Mid-Market</span>
+                    </td>
+                    <td class="py-3 px-5 text-right font-label text-on-surface">64</td>
+                    <td class="py-3 px-5 text-right font-label font-semibold text-primary">$289,100.00</td>
+                </tr>
+                <tr class="hover:bg-surface-container-high/50 bg-transparent transition-colors">
+                    <td class="py-3 px-5 font-label text-outline">6</td>
+                    <td class="py-3 px-5 font-label font-medium text-primary">CLI-4103</td>
+                    <td class="py-3 px-5 font-semibold text-on-surface flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-tertiary-container"></span>
+                        Iberia Telecom
+                    </td>
+                    <td class="py-3 px-5 text-on-surface-variant">España</td>
+                    <td class="py-3 px-5">
+                        <span
+                            class="px-2 py-0-5 rounded-full text-10 font-label font-medium bg-cyan-950 text-cyan-300">Enterprise</span>
+                    </td>
+                    <td class="py-3 px-5 text-right font-label text-on-surface">114</td>
+                    <td class="py-3 px-5 text-right font-label font-semibold text-primary">$276,430.20</td>
+                </tr>
+                <tr class="hover:bg-surface-container-high/50 bg-surface-container-lowest/30 transition-colors">
+                    <td class="py-3 px-5 font-label text-outline">7</td>
+                    <td class="py-3 px-5 font-label font-medium text-primary">CLI-3329</td>
+                    <td class="py-3 px-5 font-semibold text-on-surface flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-outline"></span>
+                        Atlas Mining Co
+                    </td>
+                    <td class="py-3 px-5 text-on-surface-variant">Chile</td>
+                    <td class="py-3 px-5">
+                        <span
+                            class="px-2 py-0-5 rounded-full text-10 font-label font-medium bg-indigo-950 text-indigo-300">Corporate</span>
+                    </td>
+                    <td class="py-3 px-5 text-right font-label text-on-surface">52</td>
+                    <td class="py-3 px-5 text-right font-label font-semibold text-primary">$241,890.00</td>
+                </tr>
+                <tr class="hover:bg-surface-container-high/50 bg-transparent transition-colors">
+                    <td class="py-3 px-5 font-label text-outline">8</td>
+                    <td class="py-3 px-5 font-label font-medium text-primary">CLI-2910</td>
+                    <td class="py-3 px-5 font-semibold text-on-surface flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-primary"></span>
+                        Pacific Cloud Services
+                    </td>
+                    <td class="py-3 px-5 text-on-surface-variant">Argentina</td>
+                    <td class="py-3 px-5">
+                        <span
+                            class="px-2 py-0-5 rounded-full text-10 font-label font-medium bg-cyan-950 text-cyan-300">Enterprise</span>
+                    </td>
+                    <td class="py-3 px-5 text-right font-label text-on-surface">88</td>
+                    <td class="py-3 px-5 text-right font-label font-semibold text-primary">$219,500.00</td>
+                </tr>
+                <tr class="hover:bg-surface-container-high/50 bg-surface-container-lowest/30 transition-colors">
+                    <td class="py-3 px-5 font-label text-outline">9</td>
+                    <td class="py-3 px-5 font-label font-medium text-primary">CLI-1845</td>
+                    <td class="py-3 px-5 font-semibold text-on-surface flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-secondary"></span>
+                        Vanguard Media
+                    </td>
+                    <td class="py-3 px-5 text-on-surface-variant">México</td>
+                    <td class="py-3 px-5">
+                        <span
+                            class="px-2 py-0-5 rounded-full text-10 font-label font-medium bg-blue-950 text-blue-300">Mid-Market</span>
+                    </td>
+                    <td class="py-3 px-5 text-right font-label text-on-surface">43</td>
+                    <td class="py-3 px-5 text-right font-label font-semibold text-primary">$195,340.75</td>
+                </tr>
+                <tr class="hover:bg-surface-container-high/50 bg-transparent transition-colors">
+                    <td class="py-3 px-5 font-label text-outline">10</td>
+                    <td class="py-3 px-5 font-label font-medium text-primary">CLI-1022</td>
+                    <td class="py-3 px-5 font-semibold text-on-surface flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-tertiary"></span>
+                        Zenith Commerce
+                    </td>
+                    <td class="py-3 px-5 text-on-surface-variant">España</td>
+                    <td class="py-3 px-5">
+                        <span
+                            class="px-2 py-0-5 rounded-full text-10 font-label font-medium bg-blue-950 text-blue-300">Mid-Market</span>
+                    </td>
+                    <td class="py-3 px-5 text-right font-label text-on-surface">71</td>
+                    <td class="py-3 px-5 text-right font-label font-semibold text-primary">$178,210.00</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- Status footer of table -->
+    <div
+        class="px-5 py-3 bg-surface-container flex flex-wrap items-center justify-between text-11 font-label text-outline">
+        <div class="flex items-center gap-4">
+            <span>Tiempo de Ejecución: <strong class="text-on-surface">48ms</strong></span>
+            <span>Caché: <strong class="text-on-surface">false</strong></span>
+            <span>Buffers leídos: <strong class="text-on-surface">1,024</strong></span>
+        </div>
+        <div class="flex items-center gap-2">
+            <span class="inline-block w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            <span>Consulta auditada en cluster de analítica</span>
+        </div>
+    </div>
+</div>

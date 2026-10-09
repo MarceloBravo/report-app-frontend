@@ -19,17 +19,17 @@
         </p>
 </div>
 <!-- Step Counter Indicators -->
-<div class="flex items-center gap-3 bg-surface-container-low px-4 py-2.5 rounded-xl">
+<div class="flex items-center gap-3 bg-surface-container-low px-4 py-2-5 rounded-xl">
 <div class="flex items-center gap-2">
 <span class="w-6 h-6 rounded-full bg-primary-container text-on-primary-fixed flex items-center justify-center font-label-sm text-label-sm">01</span>
 <span class="font-label-sm text-label-sm text-on-surface">Organización</span>
 </div>
-<span class="w-6 h-0.5 bg-surface-container-highest"></span>
+<span class="w-6 h-0-5 bg-surface-container-highest"></span>
 <div class="flex items-center gap-2">
 <span class="w-6 h-6 rounded-full bg-primary-container text-on-primary-fixed flex items-center justify-center font-label-sm text-label-sm">02</span>
 <span class="font-label-sm text-label-sm text-on-surface">Base de Datos</span>
 </div>
-<span class="w-6 h-0.5 bg-surface-container-highest"></span>
+<span class="w-6 h-0-5 bg-surface-container-highest"></span>
 <div class="flex items-center gap-2">
 <span class="w-6 h-6 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-label-sm text-label-sm transition-colors" id="step3Badge">03</span>
 <span class="font-label-sm text-label-sm text-on-surface-variant">Handshake</span>
@@ -53,23 +53,23 @@
 <h2 class="font-headline-sm text-headline-sm text-on-surface">Datos de Organización y Cuenta Maestra</h2>
 </div>
 </div>
-<span class="px-2.5 py-1 rounded bg-surface-container-highest font-label-sm text-label-sm text-on-surface-variant">Required</span>
+<span class="px-2-5 py-1 rounded bg-surface-container-highest font-label-sm text-label-sm text-on-surface-variant">Required</span>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
 <!-- a) Nombre Empresa -->
 <div class="flex flex-col gap-2 md:col-span-2">
-<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1-5">
 <span>Nombre Empresa</span>
 <span class="text-primary">*</span>
 </label>
 <div class="relative">
-<input class="w-full h-11 px-3.5 bg-surface-container text-on-surface font-body-md text-body-md rounded-lg outline-none focus:bg-surface-container-high transition-colors" id="companyName" placeholder="Ej. Acorn Tech Solutions" required="" type="text" value="Acorn Tech Solutions"/>
+<input class="w-full h-11 px-3-5 bg-surface-container text-on-surface font-body-md text-body-md rounded-lg outline-none focus:bg-surface-container-high transition-colors" id="companyName" placeholder="Ej. Acorn Tech Solutions" required="" type="text" value="Acorn Tech Solutions"/>
 </div>
 </div>
 <!-- b) Slug o Subdominio -->
 <div class="flex flex-col gap-2 md:col-span-2">
 <label class="font-label-md text-label-md text-on-surface-variant flex items-center justify-between">
-<span class="flex items-center gap-1.5">
+<span class="flex items-center gap-1-5">
 <span>Slug institucional (Workspace Subdomain)</span>
 <span class="text-primary">*</span>
 </span>
@@ -77,36 +77,36 @@
 </label>
 <div class="flex items-center h-11 bg-surface-container rounded-lg px-3 overflow-hidden">
 <span class="font-code-sm text-code-sm text-on-surface-variant select-none">https://</span>
-<input class="flex-1 bg-transparent px-1.5 text-on-surface font-code-md text-code-md outline-none text-primary" id="slugInput" oninput="updateSlugPreview(this.value)" placeholder="acorn-tech" required="" type="text" value="acorn-tech"/>
+<input class="flex-1 bg-transparent px-1-5 text-on-surface font-code-md text-code-md outline-none text-primary" id="slugInput" oninput="updateSlugPreview(this.value)" placeholder="acorn-tech" required="" type="text" value="acorn-tech"/>
 <span class="font-code-sm text-code-sm text-on-surface-variant select-none">.dataquery.ai</span>
 </div>
 </div>
 <!-- c) Nombre de usuario -->
 <div class="flex flex-col gap-2">
-<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1-5">
 <span>Nombre de Usuario Master</span>
 <span class="text-primary">*</span>
 </label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-3 top-3 text-lg text-outline">account_circle</span>
-<input class="w-full h-11 pl-10 pr-3.5 bg-surface-container text-on-surface font-code-md text-code-md rounded-lg outline-none focus:bg-surface-container-high transition-colors" id="usernameInput" placeholder="ej. admin_acorn" required="" type="text" value="admin_acorn"/>
+<input class="w-full h-11 pl-10 pr-3-5 bg-surface-container text-on-surface font-code-md text-code-md rounded-lg outline-none focus:bg-surface-container-high transition-colors" id="usernameInput" placeholder="ej. admin_acorn" required="" type="text" value="admin_acorn"/>
 </div>
 </div>
 <!-- d) Email corporativo -->
 <div class="flex flex-col gap-2">
-<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1-5">
 <span>Email Corporativo</span>
 <span class="text-primary">*</span>
 </label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-3 top-3 text-lg text-outline">alternate_email</span>
-<input class="w-full h-11 pl-10 pr-3.5 bg-surface-container text-on-surface font-body-md text-body-md rounded-lg outline-none focus:bg-surface-container-high transition-colors" id="emailInput" placeholder="contacto@acorn.com" required="" type="email" value="contacto@acorn.com"/>
+<input class="w-full h-11 pl-10 pr-3-5 bg-surface-container text-on-surface font-body-md text-body-md rounded-lg outline-none focus:bg-surface-container-high transition-colors" id="emailInput" placeholder="contacto@acorn.com" required="" type="email" value="contacto@acorn.com"/>
 </div>
 </div>
 <!-- e) Password con medidor de fuerza -->
 <div class="flex flex-col gap-2 md:col-span-2">
 <div class="flex items-center justify-between">
-<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1.5">
+<label class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1-5">
 <span>Contraseña Maestra DataQuery AI</span>
 <span class="text-primary">*</span>
 </label>
@@ -120,7 +120,7 @@
 </button>
 </div>
 <!-- Strength meter bar -->
-<div class="grid grid-cols-4 gap-1.5 pt-1.5">
+<div class="grid grid-cols-4 gap-1-5 pt-1-5">
 <div class="h-1 rounded-full bg-primary" id="bar1"></div>
 <div class="h-1 rounded-full bg-primary" id="bar2"></div>
 <div class="h-1 rounded-full bg-primary" id="bar3"></div>
@@ -143,7 +143,7 @@
 <h2 class="font-headline-sm text-headline-sm text-on-surface">Configuración de Base de Datos de Destino</h2>
 </div>
 </div>
-<div class="flex items-center gap-2 bg-surface-container-highest px-2.5 py-1 rounded">
+<div class="flex items-center gap-2 bg-surface-container-highest px-2-5 py-1 rounded">
 <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
 <span class="font-code-sm text-code-sm text-on-surface">SSL Enabled</span>
 </div>
@@ -253,7 +253,7 @@
 <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
 </span>
 </div>
-<div class="bg-surface-container rounded-lg p-3.5 flex flex-col gap-3 font-code-sm text-code-sm">
+<div class="bg-surface-container rounded-lg p-3-5 flex flex-col gap-3 font-code-sm text-code-sm">
 <div class="flex items-center justify-between text-on-surface">
 <span class="text-on-surface-variant">Cluster Engine</span>
 <span class="text-primary font-semibold">PostgreSQL v16.2</span>
@@ -276,7 +276,7 @@
 <div class="bg-surface-container-low rounded-xl p-6 shadow-2xl flex flex-col gap-5 transition-all duration-300" id="resultCard">
 <!-- Badge Header -->
 <div class="flex items-center justify-between">
-<div class="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 px-3 py-1.5 rounded-lg font-label-sm text-label-sm font-semibold">
+<div class="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 px-3 py-1-5 rounded-lg font-label-sm text-label-sm font-semibold">
 <span class="material-symbols-outlined text-base">check_circle</span>
 <span>Registro exitoso (HTTP 201 Created)</span>
 </div>
@@ -296,7 +296,7 @@
 <span class="text-on-surface-variant">}</span></pre>
 </div>
 <!-- Post-Registration Action Buttons -->
-<div class="flex flex-col gap-2.5 pt-1">
+<div class="flex flex-col gap-2-5 pt-1">
 <button class="w-full h-10 px-4 rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md flex items-center justify-center gap-2 transition-colors" onclick="copyCredentials(this)" type="button">
 <span class="material-symbols-outlined text-base text-primary">content_copy</span>
 <span id="copyBtnText">Copiar Credenciales</span>
@@ -308,8 +308,8 @@
 </div>
 <!-- Micro Schema Verification Status -->
 <div class="pt-2 flex items-center justify-between text-on-surface-variant font-code-sm text-code-sm">
-<span class="flex items-center gap-1.5">
-<span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+<span class="flex items-center gap-1-5">
+<span class="inline-block w-1-5 h-1-5 rounded-full bg-emerald-400"></span>
               Schema: <strong class="text-on-surface font-medium">public</strong>
 </span>
 <span>Introspection: <strong class="text-emerald-400">Active</strong></span>

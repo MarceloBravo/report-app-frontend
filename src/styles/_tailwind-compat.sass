@@ -1,0 +1,107 @@
+@use './tokens' as t
+
+// Colors
+.bg-surface
+  background-color: t.color('surface')
+
+.bg-surface-dim
+  background-color: t.color('surface-dim')
+
+.bg-surface-container-lowest
+  background-color: t.color('surface-container-lowest')
+
+.bg-surface-container-low
+  background-color: t.color('surface-container-low')
+
+.bg-surface-container
+  background-color: t.color('surface-container')
+
+.bg-surface-container-high
+  background-color: t.color('surface-container-high')
+
+.bg-surface-container-highest
+  background-color: t.color('surface-container-highest')
+
+.bg-primary
+  background-color: t.color('primary')
+
+.text-on-surface
+  color: t.color('on-surface')
+
+.text-on-surface-variant
+  color: t.color('on-surface-variant')
+
+.text-outline
+  color: t.color('outline')
+
+.text-primary
+  color: t.color('primary')
+
+.text-primary-fixed
+  color: t.color('primary-fixed')
+
+/* Layout helpers (minimal subset) */
+.flex
+  display: flex
+
+.flex-col
+  flex-direction: column
+
+.items-center
+  align-items: center
+
+.justify-between
+  justify-content: space-between
+
+.gap-1
+  gap: 0.25rem
+
+.gap-2
+  gap: 0.5rem
+
+.gap-3
+  gap: 0.75rem
+
+.gap-4
+  gap: 1rem
+
+.px-8
+  padding-left: 2rem
+  padding-right: 2rem
+
+.py-8
+  padding-top: 2rem
+  padding-bottom: 2rem
+
+.pl-72
+  padding-left: 18rem
+
+.rounded-xl
+  border-radius: t.radius('xl')
+
+.rounded-lg
+  border-radius: t.radius('lg')
+
+.rounded-full
+  border-radius: 9999px
+
+.shadow-md
+  box-shadow: t.$shadow-md
+
+.shadow-sm
+  box-shadow: t.$shadow-sm
+
+.text-xs
+  font-size: 0.75rem
+
+.text-sm
+  font-size: 0.875rem
+
+.font-headline
+  font-family: Geist, system-ui, -apple-system, 'Segoe UI', sans-serif
+
+.font-label
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace
+
+.font-body
+  font-family: Geist, system-ui, -apple-system, 'Segoe UI', sans-serif

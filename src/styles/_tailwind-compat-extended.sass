@@ -1,0 +1,977 @@
+@use './tokens' as t
+
+// Extended compatibility mappings generated from scan
+/* Layout */
+.w-full
+  width: 100%
+
+.w-72
+  width: 18rem
+
+.w-9
+  width: 2.25rem
+
+.h-9
+  height: 2.25rem
+
+.h-16
+  height: 4rem
+
+.h-12
+  height: 3rem
+
+.left-72
+  left: 18rem
+
+.right-0
+  right: 0
+
+.top-0
+  top: 0
+
+.min-h-screen
+  min-height: 100vh
+
+.pt-16
+  padding-top: 4rem
+
+.pl-72
+  padding-left: 18rem
+
+.pl-2
+  padding-left: 0.5rem
+
+.pr-2
+  padding-right: 0.5rem
+
+.pr-3
+  padding-right: 0.75rem
+
+.p-4
+  padding: 1rem
+
+.p-5
+  padding: 1.25rem
+
+.px-3
+  padding-left: 0.75rem
+  padding-right: 0.75rem
+
+.text-17
+  font-size: 17px
+
+.text-20
+  font-size: 20px
+
+.px-4
+  padding-left: 1rem
+  padding-right: 1rem
+
+.px-5
+  padding-left: 1.25rem
+  padding-right: 1.25rem
+
+.py-1\.5
+  padding-top: 0.375rem
+  padding-bottom: 0.375rem
+
+.py-2\.5
+  padding-top: 0.625rem
+  padding-bottom: 0.625rem
+
+.p-3\.5
+  padding: 0.875rem
+
+/* Hyphenated aliases for normalized templates */
+.py-1-5
+  padding-top: 0.375rem
+  padding-bottom: 0.375rem
+
+.py-2-5
+  padding-top: 0.625rem
+  padding-bottom: 0.625rem
+
+.p-3-5
+  padding: 0.875rem
+
+.px-3-5
+  padding-left: 0.875rem
+  padding-right: 0.875rem
+
+.px-2-5
+  padding-left: 0.625rem
+  padding-right: 0.625rem
+
+.px-1-5
+  padding-left: 0.375rem
+  padding-right: 0.375rem
+
+.pr-3-5
+  padding-right: 0.875rem
+
+.pt-1-5
+  padding-top: 0.375rem
+
+.py-0-5
+  padding-top: 0.125rem
+  padding-bottom: 0.125rem
+
+.w-1-5
+  width: 0.375rem
+
+.h-1-5
+  height: 0.375rem
+
+.pl-4
+  padding-left: 1rem
+
+.pr-4
+  padding-right: 1rem
+
+.gap-1
+  gap: 0.25rem
+
+.gap-2
+  gap: 0.5rem
+
+.gap-3
+  gap: 0.75rem
+
+.gap-4
+  gap: 1rem
+
+.gap-5
+  gap: 1.25rem
+
+.gap-6
+  gap: 1.5rem
+
+.gap-8
+  gap: 2rem
+
+.flex
+  display: flex
+
+.flex-col
+  flex-direction: column
+
+.flex-wrap
+  flex-wrap: wrap
+
+.items-center
+  align-items: center
+
+.items-start
+  align-items: flex-start
+
+.items-end
+  align-items: flex-end
+
+.justify-between
+  justify-content: space-between
+
+.justify-center
+  justify-content: center
+
+.justify-end
+  justify-content: flex-end
+
+.block
+  display: block
+
+.inline-block
+  display: inline-block
+
+.inline-flex
+  display: inline-flex
+
+.fixed
+  position: fixed
+
+.absolute
+  position: absolute
+
+.relative
+  position: relative
+
+.max-w-md
+  max-width: 28rem
+
+.max-w-2xl
+  max-width: 42rem
+
+.max-w-7xl
+  max-width: 80rem
+
+.mx-auto
+  margin-left: auto
+  margin-right: auto
+
+/* Typography */
+.text-2xl
+  font-size: 1.5rem
+
+.text-sm
+  font-size: 0.875rem
+
+.text-xs
+  font-size: 0.75rem
+
+.text-10
+  font-size: 10px
+
+.text-11
+  font-size: 11px
+
+.text-14
+  font-size: 14px
+
+.text-15
+  font-size: 15px
+
+.text-16
+  font-size: 16px
+
+.text-18
+  font-size: 18px
+
+.text-17
+  font-size: 17px
+
+.text-18
+  font-size: 18px
+
+.text-20
+  font-size: 20px
+
+
+.font-headline
+  font-family: Geist, system-ui, -apple-system, 'Segoe UI', sans-serif
+
+.font-label
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace
+
+.tracking-widest
+  letter-spacing: 0.1em
+
+.tracking-wider
+  letter-spacing: 0.08em
+
+.font-body
+  font-family: Geist, system-ui, -apple-system, 'Segoe UI', sans-serif
+
+.font-medium
+  font-weight: 500
+
+.font-semibold
+  font-weight: 600
+
+.tracking-tight
+  letter-spacing: -0.01em
+
+.tracking-wider
+  letter-spacing: 0.08em
+
+.uppercase
+  text-transform: uppercase
+
+.font-semibold
+  font-weight: 600
+
+.font-medium
+  font-weight: 500
+
+.leading-relaxed
+  line-height: 1.625
+
+.leading-6
+  line-height: 1.5
+
+.whitespace-pre
+  white-space: pre
+
+.truncate
+  overflow: hidden
+  white-space: nowrap
+  text-overflow: ellipsis
+
+/* Colors / tokens */
+.bg-surface
+  background-color: t.color('surface')
+
+.bg-surface\/85
+  background-color: rgba(15, 19, 28, 0.85)
+
+.hover\:text-primary:hover
+  color: t.color('primary')
+
+.hover\:bg-surface-container-high:hover
+  background-color: t.color('surface-container-high')
+
+.hover\:bg-surface-container:hover
+  background-color: t.color('surface-container')
+
+.hover\:bg-surface-container-low:hover
+  background-color: t.color('surface-container-low')
+
+.hover\:text-on-surface:hover
+  color: t.color('on-surface')
+
+.focus\:bg-surface-container-high:focus
+  background-color: t.color('surface-container-high')
+
+.group-hover\:text-primary:hover
+  color: t.color('primary')
+
+.group-hover\:-translate-x-0-5:hover
+  transform: translateX(-0.125rem)
+
+.placeholder\:text-outline::placeholder
+  color: t.color('outline')
+
+.bg-surface-container-lowest
+  background-color: t.color('surface-container-lowest')
+
+.bg-surface-container-low
+  background-color: t.color('surface-container-low')
+
+.bg-surface-container
+  background-color: t.color('surface-container')
+
+.bg-surface-container-high
+  background-color: t.color('surface-container-high')
+
+.bg-surface-container-highest
+  background-color: t.color('surface-container-highest')
+
+.bg-primary
+  background-color: t.color('primary')
+
+.bg-primary-container
+  background-color: t.color('primary-container')
+
+.bg-primary-fixed
+  background-color: t.color('primary-fixed')
+
+.bg-secondary
+  background-color: t.color('secondary')
+
+.bg-tertiary
+  background-color: t.color('tertiary')
+
+.text-on-surface
+  color: t.color('on-surface')
+
+.text-on-surface-variant
+  color: t.color('on-surface-variant')
+
+.text-outline
+  color: t.color('outline')
+
+.text-outline-variant
+  color: t.color('outline-variant')
+
+.text-primary
+  color: t.color('primary')
+
+.text-primary-container
+  color: t.color('primary-container')
+
+.text-primary-fixed
+  color: t.color('primary-fixed')
+
+.text-secondary
+  color: t.color('secondary')
+
+.text-tertiary
+  color: t.color('tertiary')
+
+.text-on-primary
+  color: t.color('on-primary')
+
+.text-on-primary-fixed
+  color: t.color('on-primary-fixed')
+
+.bg-transparent
+  background-color: transparent
+
+.bg-secondary-container
+  background-color: t.color('secondary-container')
+
+.bg-tertiary-container
+  background-color: t.color('tertiary-container')
+
+.bg-primary\/10
+  background-color: rgba(76, 215, 246, 0.1)
+
+.bg-primary\/5
+  background-color: rgba(76, 215, 246, 0.05)
+
+.bg-emerald-400
+  background-color: #34d399
+
+.bg-emerald-400\/60
+  background-color: rgba(52, 211, 153, 0.6)
+
+.bg-emerald-500\/10
+  background-color: rgba(16, 185, 129, 0.1)
+
+.bg-amber-400
+  background-color: #f59e0b
+
+.bg-error
+  background-color: #b91c1c
+
+.bg-cyan-950
+  background-color: #012b34
+
+.bg-indigo-950
+  background-color: #0a122b
+
+.bg-blue-950
+  background-color: #071a3a
+
+.bg-secondary
+  background-color: t.color('secondary')
+
+.bg-tertiary
+  background-color: t.color('tertiary')
+
+.bg-surface-container-lowest\/80
+  background-color: rgba(10, 14, 23, 0.8)
+
+.bg-surface-container-high\/50
+  background-color: rgba(38, 42, 52, 0.5)
+
+.bg-surface-container-lowest\/30
+  background-color: rgba(10, 14, 23, 0.3)
+
+.bg-surface-container-highest\/60
+  background-color: rgba(49, 53, 63, 0.6)
+
+.text-emerald-400
+  color: #34d399
+
+.text-cyan-300
+  color: #67e8f9
+
+.text-indigo-300
+  color: #a5b4fc
+
+.text-blue-300
+  color: #93c5fd
+
+.text-primary-container
+  color: t.color('primary-container')
+
+.text-on-primary
+  color: t.color('on-primary')
+
+.text-on-primary-fixed
+  color: t.color('on-primary-fixed')
+
+.text-primary-fixed
+  color: t.color('primary-fixed')
+
+.bg-primary-10
+  background-color: rgba(6,182,212,0.1)
+
+.bg-emerald-400-60
+  background-color: rgba(52,211,153,0.6)
+
+.h-full
+  height: 100%
+
+.w-2
+  width: 0.5rem
+
+.h-2
+  height: 0.5rem
+
+.w-6
+  width: 1.5rem
+
+.h-6
+  height: 1.5rem
+
+.w-8
+  width: 2rem
+
+.h-8
+  height: 2rem
+
+.w-48
+  width: 12rem
+
+.h-48
+  height: 12rem
+
+.h-1
+  height: 0.25rem
+
+.top-2
+  top: 0.5rem
+
+.right-2
+  right: 0.5rem
+
+.left-3
+  left: 0.75rem
+
+.left-0
+  left: 0
+
+.top-0
+  top: 0
+
+.z-40
+  z-index: 40
+
+.z-50
+  z-index: 50
+
+.mt-1
+  margin-top: 0.25rem
+
+.mb-3
+  margin-bottom: 0.75rem
+
+.mb-10
+  margin-bottom: 2.5rem
+
+.py-1
+  padding-top: 0.25rem
+  padding-bottom: 0.25rem
+
+.py-2
+  padding-top: 0.5rem
+  padding-bottom: 0.5rem
+
+.px-2
+  padding-left: 0.5rem
+  padding-right: 0.5rem
+
+.px-3
+  padding-left: 0.75rem
+  padding-right: 0.75rem
+
+.px-8
+  padding-left: 2rem
+  padding-right: 2rem
+
+.pt-2
+  padding-top: 0.5rem
+
+.pt-4
+  padding-top: 1rem
+
+.pb-1
+  padding-bottom: 0.25rem
+
+.pb-12
+  padding-bottom: 3rem
+
+.pl-9
+  padding-left: 2.25rem
+
+.pr-3
+  padding-right: 0.75rem
+
+.range-none
+  display: none
+
+/* Borders, shadows, transitions */
+.rounded-md
+  border-radius: t.radius('default')
+
+.rounded-lg
+  border-radius: t.radius('lg')
+
+.rounded-xl
+  border-radius: t.radius('xl')
+
+.rounded-full
+  border-radius: 9999px
+
+.shadow-sm
+  box-shadow: t.$shadow-sm
+
+.shadow-md
+  box-shadow: t.$shadow-md
+
+.shadow-lg
+  box-shadow: t.$shadow-lg
+
+.transition-colors
+  transition: background-color 160ms ease, color 160ms ease
+
+.transition-all
+  transition: all 160ms ease
+
+.transition-transform
+  transition: transform 160ms ease
+
+.backdrop-blur-xl
+  backdrop-filter: blur(24px)
+
+.shadow-\[0_1px_8px_rgba\(0\,0\,0\,0\.04\)\]
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04)
+
+.shadow-\[0_0_8px_rgba\(6\,182\,212\,0\.6\)\]
+  box-shadow: 0 0 8px rgba(6, 182, 212, 0.6)
+
+.animate-pulse
+  animation: pulse 2s cubic-bezier(.4,0,0.6,1) infinite
+
+.hover\:brightness-110:hover
+  filter: brightness(1.1)
+
+.active\:scale-95:active
+  transform: scale(0.95)
+
+.active\:scale-98:active
+  transform: scale(0.98)
+
+@keyframes pulse
+  0%
+    opacity: 1
+  50%
+    opacity: 0.4
+  100%
+    opacity: 1
+
+/* Table/grid helpers */
+.overflow-x-auto
+  overflow-x: auto
+
+.overflow-hidden
+  overflow: hidden
+
+.grid
+  display: grid
+
+.grid-cols-custom-3rem-1fr
+  grid-template-columns: 3rem 1fr
+
+.pointer-events-none
+  pointer-events: none
+
+.blur-3xl
+  filter: blur(64px)
+
+.select-none
+  user-select: none
+
+.selection-bg-primary-20 ::selection
+  background-color: rgba(6,182,212,0.2)
+
+.selection-text-primary ::selection
+  color: t.color('primary')
+
+.space-y-3 > :not(:first-child)
+  margin-top: 0.75rem
+
+.space-y-6 > :not(:first-child)
+  margin-top: 1.5rem
+
+.space-y-0-5 > :not(:first-child)
+  margin-top: 0.125rem
+
+.header-search-input
+  width: 100%
+  background-color: t.color('surface-container-low')
+  color: t.color('on-surface')
+  font-size: 0.75rem
+  line-height: 1rem
+  padding: 0.5rem 0.75rem 0.5rem 2.25rem
+  border: 0
+  border-radius: t.radius('lg')
+  outline: none
+  transition: background-color 160ms ease, color 160ms ease
+
+.header-search-input::placeholder
+  color: t.color('outline')
+
+.header-search-input:focus
+  background-color: t.color('surface-container-high')
+  outline: none
+
+.breadcrumb-link
+  color: t.color('on-surface-variant')
+  text-decoration: none
+  transition: color 160ms ease
+
+.breadcrumb-link:hover
+  color: t.color('primary')
+
+.prompt-panel
+  display: block
+  padding: 0.875rem
+  border-radius: t.radius('lg')
+  background-color: rgba(10, 14, 23, 0.8)
+  color: t.color('on-surface')
+  font-size: 0.875rem
+  line-height: 1.625
+  font-family: Geist, system-ui, -apple-system, 'Segoe UI', sans-serif
+
+.prompt-panel p
+  margin: 0
+
+/* Missing utility aliases from onboarding + workspace templates */
+.gap-1-5
+  gap: 0.375rem
+
+.gap-2-5
+  gap: 0.625rem
+
+.h-0-5
+  height: 0.125rem
+
+.w-2-5
+  width: 0.625rem
+
+.h-2-5
+  height: 0.625rem
+
+.bg-secondary-container\/10
+  background-color: rgba(0, 83, 219, 0.1)
+
+.bg-emerald-500\/10
+  background-color: rgba(16, 185, 129, 0.1)
+
+.bg-error\/60
+  background-color: rgba(185, 28, 28, 0.6)
+
+.bg-amber-400\/60
+  background-color: rgba(245, 158, 11, 0.6)
+
+.bg-primary\/5
+  background-color: rgba(76, 215, 246, 0.05)
+
+.text-emerald-300
+  color: #6ee7b7
+
+.text-amber-300
+  color: #fcd34d
+
+.text-on-secondary
+  color: t.color('on-secondary')
+
+.text-on-secondary-container
+  color: t.color('on-secondary-container')
+
+.text-on-secondary-fixed
+  color: t.color('on-secondary-fixed')
+
+.text-on-primary-container
+  color: t.color('on-primary-container')
+
+.text-on-primary-fixed-variant
+  color: t.color('on-primary-fixed-variant')
+
+.text-on-error
+  color: t.color('on-error')
+
+.text-on-error-container
+  color: t.color('on-error-container')
+
+.text-on-tertiary
+  color: t.color('on-tertiary')
+
+.text-on-tertiary-container
+  color: t.color('on-tertiary-container')
+
+.text-on-tertiary-fixed
+  color: t.color('on-tertiary-fixed')
+
+.text-on-background
+  color: t.color('on-background')
+
+.shadow-xl
+  box-shadow: t.$shadow-xl
+
+.shadow-2xl
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45)
+
+.animate-ping
+  animation: ping 1s cubic-bezier(0,0,0.2,1) infinite
+
+.opacity-75
+  opacity: 0.75
+
+.font-body-sm
+  font-family: Geist, system-ui, -apple-system, 'Segoe UI', sans-serif
+
+.font-body-md
+  font-family: Geist, system-ui, -apple-system, 'Segoe UI', sans-serif
+
+.font-body-lg
+  font-family: Geist, system-ui, -apple-system, 'Segoe UI', sans-serif
+
+.font-headline-sm
+  font-family: Geist, system-ui, -apple-system, 'Segoe UI', sans-serif
+
+.font-headline-md
+  font-family: Geist, system-ui, -apple-system, 'Segoe UI', sans-serif
+
+.font-headline-lg
+  font-family: Geist, system-ui, -apple-system, 'Segoe UI', sans-serif
+
+.font-label-sm
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace
+
+.font-label-md
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace
+
+.font-code-sm
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace
+
+.font-code-md
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace
+
+.font-code-lg
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace
+
+.text-body-sm
+  font-size: 0.75rem
+  line-height: 1rem
+  font-weight: 400
+
+.text-body-md
+  font-size: 0.875rem
+  line-height: 1.25rem
+  font-weight: 400
+
+.text-body-lg
+  font-size: 1rem
+  line-height: 1.5rem
+  font-weight: 400
+
+.text-headline-sm
+  font-size: 1.125rem
+  line-height: 1.5rem
+  letter-spacing: -0.01em
+  font-weight: 600
+
+.text-headline-md
+  font-size: 1.375rem
+  line-height: 1.75rem
+  letter-spacing: -0.02em
+  font-weight: 600
+
+.text-headline-lg
+  font-size: 2rem
+  line-height: 2.375rem
+  letter-spacing: -0.03em
+  font-weight: 600
+
+.text-label-sm
+  font-size: 0.625rem
+  line-height: 0.75rem
+  letter-spacing: 0.06em
+  font-weight: 600
+
+.text-label-md
+  font-size: 0.75rem
+  line-height: 1rem
+  letter-spacing: 0.04em
+  font-weight: 600
+
+.text-code-sm
+  font-size: 0.6875rem
+  line-height: 0.875rem
+  font-weight: 400
+
+.text-code-md
+  font-size: 0.75rem
+  line-height: 1.125rem
+  letter-spacing: -0.01em
+  font-weight: 400
+
+.text-code-lg
+  font-size: 0.875rem
+  line-height: 1.375rem
+  letter-spacing: -0.02em
+  font-weight: 500
+
+@keyframes ping
+  75%, 100%
+    transform: scale(2)
+    opacity: 0
+
+/* Additional base utilities and responsive variants generated from scan */
+.flex-row
+  flex-direction: row
+
+.items-end
+  align-items: flex-end
+
+.grid-cols-1
+  grid-template-columns: repeat(1, minmax(0, 1fr))
+
+.grid-cols-2
+  grid-template-columns: repeat(2, minmax(0, 1fr))
+
+.grid-cols-12
+  grid-template-columns: repeat(12, minmax(0, 1fr))
+
+.col-span-2
+  grid-column: span 2 / span 2
+
+.col-span-8
+  grid-column: span 8 / span 8
+
+/* Responsive wrappers using project breakpoints (tokens) */
+@media (min-width: t.$breakpoint-sm)
+  .sm\:flex-row
+    display: flex
+    flex-direction: row
+
+  .sm\:items-center
+    align-items: center
+
+  .sm\:items-end
+    align-items: flex-end
+
+  .sm\:flex
+    display: flex
+
+  .sm\:grid
+    display: grid
+
+  .sm\:grid-cols-1
+    grid-template-columns: repeat(1, minmax(0,1fr))
+
+@media (min-width: t.$breakpoint-md)
+  .md\:flex-row
+    display: flex
+    flex-direction: row
+
+  .md\:items-center
+    align-items: center
+
+  .md\:items-end
+    align-items: flex-end
+
+  .md\:flex
+    display: flex
+
+  .md\:grid
+    display: grid
+
+  .md\:grid-cols-2
+    grid-template-columns: repeat(2, minmax(0,1fr))
+
+  .md\:col-span-2
+    grid-column: span 2 / span 2
+
+@media (min-width: t.$breakpoint-lg)
+  .lg\:grid-cols-12
+    grid-template-columns: repeat(12, minmax(0,1fr))
+
+  .lg\:col-span-8
+    grid-column: span 8 / span 8
+
+  .lg\:py-12
+    padding-top: 3rem
+    padding-bottom: 3rem
