@@ -6,6 +6,6 @@ import { QueryExecute } from './pages/workspace/query_execute/query-execute/quer
 export const routes: Routes = [
     {path: '', component: Login},
     {path: 'register', component: Register},
-    {path: 'query-execute', component: QueryExecute},
+    {path: 'query-execute', component: QueryExecute, canActivate: [() => true]},
     {path: '**', redirectTo: ''},
 ];

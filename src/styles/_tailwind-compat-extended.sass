@@ -422,6 +422,9 @@
 .bg-error
   background-color: #b91c1c
 
+.bg-error\/10
+  background-color: rgba(185, 28, 28, 0.1)
+
 .bg-cyan-950
   background-color: #012b34
 
@@ -451,6 +454,9 @@
 
 .text-emerald-400
   color: #34d399
+
+.text-error
+  color: #b91c1c
 
 .text-cyan-300
   color: #67e8f9
@@ -705,8 +711,9 @@
   color: t.color('primary')
 
 .prompt-panel
+  width: stretch
   display: block
-  padding: 0.875rem
+  padding: 0.475rem
   border-radius: t.radius('lg')
   background-color: rgba(10, 14, 23, 0.8)
   color: t.color('on-surface')

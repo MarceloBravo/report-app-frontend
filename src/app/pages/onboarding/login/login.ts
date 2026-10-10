@@ -70,7 +70,7 @@ export class Login {
 
   private loginSuccessful(): void {
     this.status.set('success');
-    this.router.navigate(['/register']);
+    this.router.navigate(['/query-execute']);
   }
 
   private loginFailed(): void {

@@ -1,3 +1,5 @@
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { QueryExecute } from './query-execute';
@@ -8,7 +10,8 @@ describe('QueryExecute', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [QueryExecute]
+      imports: [QueryExecute],
+      providers: [provideHttpClient(), provideHttpClientTesting()],
     })
     .compileComponents();
 

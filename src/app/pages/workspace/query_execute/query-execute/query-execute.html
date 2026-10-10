@@ -12,44 +12,19 @@
                     <app-breadcrumbs></app-breadcrumbs>
 
                     <div class="flex items-center gap-3 mt-1">
-                        <h1 class="text-2xl font-headline font-semibold text-on-surface tracking-tight">Ejecución y
-                            Resultados de
-                            Consulta</h1>
-                        <span
-                            class="inline-flex items-center gap-1-5 px-2-5 py-0-5 rounded-full text-11 font-label font-medium bg-emerald-500/10 text-emerald-400">
-                            <span class="w-1-5 h-1-5 rounded-full bg-emerald-400"></span>
-                            Exitosa (200 OK)
-                        </span>
+                        <h1 class="text-2xl font-headline font-semibold text-on-surface tracking-tight">
+                            Ejecución y Resultados de Consulta
+                        </h1>
+                        
                     </div>
 
                 </div>                
-                <!-- Metadata Badges -->
-                <div class="flex flex-wrap items-center gap-2 font-label text-xs">
-                    <div
-                        class="flex items-center gap-1-5 px-3 py-1-5 rounded-md bg-surface-container text-on-surface-variant">
-                        <span class="material-symbols-outlined text-15 text-primary">timer</span>
-                        <span>48ms</span>
-                    </div>
-                    <div
-                        class="flex items-center gap-1-5 px-3 py-1-5 rounded-md bg-surface-container text-on-surface-variant">
-                        <span class="material-symbols-outlined text-15 text-tertiary">table_rows</span>
-                        <span>10 filas retornadas</span>
-                    </div>
-                    <div
-                        class="flex items-center gap-1-5 px-3 py-1-5 rounded-md bg-surface-container text-on-surface-variant">
-                        <span class="material-symbols-outlined text-15 text-primary-container">database</span>
-                        <span>PostgreSQL 16</span>
-                    </div>
-                    <div class="flex items-center gap-1-5 px-3 py-1-5 rounded-md bg-surface-container text-outline">
-                        <span class="material-symbols-outlined text-15">event</span>
-                        <span>08 Mar 2025, 14:32:10</span>
-                    </div>
-                </div>
+                
             </div>
 
 
             <!-- Section 1: Natural Language Prompt Display (Read-Only) -->
-                    <div class="rounded-xl bg-surface-container-low p-3-5 space-y-3 relative overflow-hidden">
+            <div class="rounded-xl bg-surface-container-low p-3-5 space-y-3 relative overflow-hidden">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-primary text-20">smart_toy</span>
@@ -60,6 +35,25 @@
                             class="px-2 py-0.5 rounded text-10 font-label font-medium bg-surface-container-high text-on-surface-variant">Sólo
                             Lectura</span>
                     </div>
+                    <span class="text-outline">|</span>
+                    <div class="flex items-center gap-2 text-on-surface-variant">
+                        <span class="material-symbols-outlined text-16 text-primary">database</span>
+                        <select
+                            id="selectConnectionId"
+                            class="bg-surface-container hover:bg-surface-container-high text-on-surface rounded-lg px-2-5 py-1 text-11 font-label outline-none focus:ring-1 focus:ring-primary cursor-pointer max-w-64"
+                            aria-label="Conexión a base de datos"
+                            [value]="selectedConnectionId()"
+                            (change)="onConnectionChange($event)">
+                            <option value="" disabled>Selecciona una conexión</option>
+                            @for (group of connectionGroups(); track group.dbName) {
+                                <optgroup [label]="group.dbName">
+                                    @for (connection of group.connections; track connection.dbConnectionId) {
+                                        <option [value]="connection.dbConnectionId">{{ connection.schemaName }}</option>
+                                    }
+                                </optgroup>
+                            }
+                        </select>
+                    </div>
                     <button
                         class="flex items-center gap-1-5 text-xs font-label text-on-surface-variant hover:text-primary transition-colors px-2 py-1 rounded bg-surface-container hover:bg-surface-container-high"
                         (click)="copyPrompt()" title="Copiar prompt original">
@@ -67,9 +61,49 @@
                         <span id="promptCopyFeedback">{{ promptCopyFeedback }}</span>
                     </button>
                 </div>
-                    <div
-                    class="prompt-panel">
-                    <p class="font-medium" id="promptText">{{ promptText }}</p>
+                <div class="flex items-center gap-2">
+                    <input type="text"
+                        id="promptText"
+                        class="prompt-panel font-medium flex-1"
+                        placeholder="{{ placeholderText }}"
+                        [value]="promptText"
+                        (input)="onPromptInput($event)"
+                        (keydown.enter)="onPromptKeydown($event)"/>
+                    <button
+                        class="flex items-center gap-1-5 px-3 py-2-5 rounded-lg bg-primary text-on-primary hover:bg-primary-fixed transition-colors font-label font-medium text-11 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-primary"
+                        [disabled]="!canConvert() || isConverting()"
+                        (click)="convertQuery()"
+                        title="Convertir consulta a SQL">
+                        <span class="material-symbols-outlined text-15">smart_toy</span>
+                        <span>{{ isConverting() ? 'Convirtiendo…' : 'Convertir' }}</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Metadata Badges -->
+            <div class="info-query flex flex-wrap items-center gap-2 font-label text-xs">
+                <span [class]="'info-status inline-flex items-center gap-1-5 px-2-5 py-0-5 rounded-full text-11 font-label font-medium ' + statusPillClass()">
+                    <span class="w-1-5 h-1-5 rounded-full" [class]="'w-1-5 h-1-5 rounded-full ' + statusDotClass()"></span>
+                    <span id="spn-status">{{ statusText() }}</span>
+                </span>
+                <div
+                    class="flex items-center gap-1-5 px-3 py-1-5 rounded-md bg-surface-container text-on-surface-variant">
+                    <span class="material-symbols-outlined text-15 text-primary">timer</span>
+                    <span id="spn-elapsed-time">{{ elapsedTimeLabel() }}</span>
+                </div>
+                <div
+                    class="flex items-center gap-1-5 px-3 py-1-5 rounded-md bg-surface-container text-on-surface-variant">
+                    <span class="material-symbols-outlined text-15 text-tertiary">table_rows</span>
+                    <span id="spn-rows-retorned">{{ registrosCountLabel() }} filas retornadas</span>
+                </div>
+                <div
+                    class="flex items-center gap-1-5 px-3 py-1-5 rounded-md bg-surface-container text-on-surface-variant">
+                    <span class="material-symbols-outlined text-15 text-primary-container">database</span>
+                    <span>PostgreSQL 16</span>
+                </div>
+                <div class="flex items-center gap-1-5 px-3 py-1-5 rounded-md bg-surface-container text-outline">
+                    <span class="material-symbols-outlined text-15">event</span>
+                    <span id="spn-date-query">{{ fechaConsultaFormatted() }}</span>
                 </div>
             </div>
 
@@ -92,6 +126,7 @@
                                 class="px-1-5 py-0-5 rounded text-10 bg-surface-container-high text-primary-fixed">PostgreSQL
                                 Dialect</span>
                         </div>
+                        
                     </div>
                     <div class="flex items-center gap-2">
                         <button
