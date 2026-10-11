@@ -3,6 +3,10 @@ import type { GridFooterItem, GridRow, GridRowView } from '../../interfaces/grid
 import { ExportService } from '../../services/export/export.service';
 import { formatCellValue, isBooleanValue } from '../../utils/cell-format';
 
+function normalizeColumnName(value: string): string {
+  return value.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+}
+
 @Component({
   selector: 'app-grid-table',
   imports: [],
@@ -30,13 +34,13 @@ export class GridTable {
   readonly hasHeaders = computed(() => this.headers().length > 0);
 
   readonly idIndex = computed(() => {
-    const target = this.idColumn().trim().toLowerCase();
+    const target = normalizeColumnName(this.idColumn());
 
     if (!target) {
       return -1;
     }
 
-    return this.headers().findIndex((header) => header.trim().toLowerCase() === target);
+    return this.headers().findIndex((header) => normalizeColumnName(header) === target);
   });
 
   readonly columnCount = computed(() => {

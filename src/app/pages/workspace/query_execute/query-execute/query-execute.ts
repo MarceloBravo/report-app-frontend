@@ -13,6 +13,7 @@ import type { GridFooterItem } from '../../../../interfaces/gridTableInterface';
 import { Connections } from '../../../../services/connections/connections';
 import { ExportService } from '../../../../services/export/export.service';
 import { QueryExecuteService } from '../../../../services/query-excecute/query-execute-service';
+import { toGridData } from '../../../../utils/grid-data';
 
 export interface ConnectionGroup {
   dbName: string;
@@ -58,35 +59,6 @@ LIMIT 10;`;
   readonly canConvert = computed(
     () => this.selectedConnectionId().length > 0 && this.promptText.trim().length > 0,
   );
-
-  // Results rendered by the reusable grid
-  readonly gridHeaders: string[] = [
-    'CLIENTE_ID',
-    'NOMBRE_EMPRESA',
-    'PAIS',
-    'SEGMENTO',
-    'TOTAL_OPERACIONES',
-    'FACTURACION_USD',
-  ];
-
-  readonly gridRows: unknown[][] = [
-    ['CLI-8941', 'Acorn Tech Global', 'España', 'Enterprise', 142, 482950.0],
-    ['CLI-7820', 'Fintech Dynamics Corp', 'México', 'Enterprise', 98, 394200.5],
-    ['CLI-9031', 'NovaRetail Latam', 'Chile', 'Corporate', 120, 356800.0],
-    ['CLI-6419', 'BioGenetics Lab', 'Colombia', 'Enterprise', 85, 312450.0],
-    ['CLI-5524', 'Andes Logistics SA', 'Perú', 'Mid-Market', 64, 289100.0],
-    ['CLI-4103', 'Iberia Telecom', 'España', 'Enterprise', 114, 276430.2],
-    ['CLI-3329', 'Atlas Mining Co', 'Chile', 'Corporate', 52, 241890.0],
-    ['CLI-2910', 'Pacific Cloud Services', 'Argentina', 'Enterprise', 88, 219500.0],
-    ['CLI-1845', 'Vanguard Media', 'México', 'Mid-Market', 43, 195340.75],
-    ['CLI-1022', 'Zenith Commerce', 'España', 'Mid-Market', 71, 178210.0],
-  ];
-
-  readonly gridFooterItems: GridFooterItem[] = [
-    { label: 'Tiempo de Ejecución', value: '48ms' },
-    { label: 'Caché', value: 'false' },
-    { label: 'Buffers leídos', value: '1,024' },
-  ];
 
   // Result metadata of the last conversion
   readonly queryResult = signal<ConvertQueryResponseInterface | null>(null);
@@ -137,6 +109,19 @@ LIMIT 10;`;
     const fecha = this.queryResult()?.fechaConsulta;
     return fecha ? this.dateFormatter.format(new Date(fecha)) : '—';
   });
+
+  // Results rendered by the reusable grid, derived from the service response
+  private readonly gridData = computed(() => toGridData(this.queryResult()?.data ?? []));
+  readonly gridHeaders = computed(() => this.gridData().headers);
+  readonly gridRows = computed(() => this.gridData().rows);
+  readonly gridSubtitle = computed(() => {
+    const result = this.queryResult();
+    return result ? `${result.registrosCount} registros retornados` : '';
+  });
+  readonly gridFooterItems = computed<GridFooterItem[]>(() => [
+    { label: 'Tiempo de Ejecución', value: this.elapsedTimeLabel() },
+    { label: 'Estado', value: this.queryStatus() === 'success' ? 'OK' : 'Error' },
+  ]);
 
   constructor(
     private exportService: ExportService,
@@ -232,21 +217,18 @@ LIMIT 10;`;
 
   exportTableToCSV(filename?: string): void {
     const rows = [
-      this.gridHeaders,
-      ...this.gridRows.map((row) => row.map((cell) => String(cell ?? ''))),
+      this.gridHeaders(),
+      ...this.gridRows().map((row) => row.map((cell) => String(cell ?? ''))),
     ];
 
     this.exportService.downloadCsv(rows, filename ?? 'consulta_sql_export.csv');
   }
 
   exportTableToJSON(): void {
-    const data = this.gridRows.map((row) =>
-      Object.fromEntries(
-        this.gridHeaders.map((header, index) => [header.toLowerCase(), row[index]]),
-      ),
+    this.exportService.downloadJson(
+      this.queryResult()?.data ?? [],
+      'resultados_consulta_qry_981a.json',
     );
-
-    this.exportService.downloadJson(data, 'resultados_consulta_qry_981a.json');
   }
 
   // clipboard and download helpers moved to ExportService

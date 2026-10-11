@@ -9,5 +9,5 @@ export interface ConvertQueryResponseInterface {
   registrosCount: number;
   dbConnectionId: string;
   consultasEnPeriodo: number;
-  data: Record<string, string>[];
+  data: Record<string, unknown>[];
 }

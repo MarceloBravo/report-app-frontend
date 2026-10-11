@@ -177,10 +177,10 @@
             </div>
             <!-- Section 3: Data Result Grid / Table -->
             <app-grid-table
-                [headers]="gridHeaders"
-                [rows]="gridRows"
-                subtitle="10 registros correspondientes a Q4 2024"
-                [footerItems]="gridFooterItems"
+                [headers]="gridHeaders()"
+                [rows]="gridRows()"
+                [subtitle]="gridSubtitle()"
+                [footerItems]="gridFooterItems()"
                 footerNote="Consulta auditada en cluster de analítica"
                 exportFileName="resultados_consulta_qry_981a" />
             

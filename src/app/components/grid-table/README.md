@@ -18,7 +18,7 @@ de pasarlos.
 | --- | --- | --- | --- | --- |
 | `headers` | `string[]` | Sí | `[]` | Nombres de las columnas. Si está vacío, **no se renderizan las cabeceras** (se mantiene la barra superior y el resto de la grilla). |
 | `rows` | `unknown[][]` | Sí | `[]` | Datos de cada fila como array posicional de celdas. Si está vacío, se ocultan la barra superior y el footer, y se muestra el mensaje vacío. |
-| `idColumn` | `string` | Sí | `''` | Nombre de la columna (comparación sin distinguir mayúsculas) que actúa como identificador de fila. Esa columna **no se muestra**, pero su valor se usa para identificar cada fila. |
+| `idColumn` | `string` | Sí | `''` | Nombre de la columna que actúa como identificador de fila. La comparación ignora mayúsculas y separadores (`_`, `-`), por lo que `id`, `productoId` y `producto_id` coinciden entre sí. Esa columna **no se muestra**, pero su valor se usa para identificar cada fila. Si no se encuentra la columna, se usa el índice de fila. |
 | `title` | `string` | Sí | `'Resultados Obtenidos'` | Título mostrado en la barra superior. |
 | `subtitle` | `string` | Sí | `''` | Texto secundario de la barra superior. Si está vacío, no se muestra. |
 | `icon` | `string` | Sí | `'dataset'` | Nombre del icono (Material Symbols) de la barra superior. |
