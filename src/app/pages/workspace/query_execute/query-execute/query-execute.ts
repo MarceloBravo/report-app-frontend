@@ -30,23 +30,10 @@ export interface ConnectionGroup {
 export class QueryExecute {
   // Prompt shown in the UI
   placeholderText = 'Ej.: ¿Cuáles fueron los 10 clientes con mayor facturación en el último trimestre de 2024 agrupados por país y segmento?';
-  promptText = '';
+  readonly promptText = signal('');
 
   // SQL shown in the textarea
-  rawSql = `SELECT 
-  c.cliente_id,
-  c.nombre_empresa,
-  c.pais,
-  c.segmento,
-  COUNT(f.factura_id) AS total_operaciones,
-  ROUND(SUM(f.monto_total)::numeric, 2) AS facturacion_usd
-FROM clientes c
-JOIN facturas f ON c.cliente_id = f.cliente_id
-WHERE f.fecha_emision BETWEEN '2024-10-01' AND '2024-12-31'
-  AND f.estado = 'PAGADA'
-GROUP BY c.cliente_id, c.nombre_empresa, c.pais, c.segmento
-ORDER BY facturacion_usd DESC
-LIMIT 10;`;
+  rawSql = `Aquí se mostrará el SQL generado a partir del prompt.`;
 
   // UI feedback labels
   promptCopyFeedback = 'Copiar Prompt';
@@ -57,12 +44,12 @@ LIMIT 10;`;
   readonly selectedConnectionId = signal('');
   readonly isConverting = signal(false);
   readonly canConvert = computed(
-    () => this.selectedConnectionId().length > 0 && this.promptText.trim().length > 0,
+    () => this.selectedConnectionId().length > 0 && this.promptText().trim().length > 0,
   );
 
   // Result metadata of the last conversion
   readonly queryResult = signal<ConvertQueryResponseInterface | null>(null);
-  readonly queryStatus = signal<'success' | 'error'>('success');
+  readonly queryStatus = signal<'success' | 'error' | 'on-going' | ''>('success');
   readonly errorCode = signal<number | null>(null);
   readonly elapsedMs = signal<number | null>(null);
 
@@ -75,19 +62,12 @@ LIMIT 10;`;
     second: '2-digit',
   });
 
-  readonly statusText = computed(() =>
-    this.queryStatus() === 'success'
-      ? 'Exitosa (200 OK)'
-      : `Fallida (Cod error ${this.errorCode() ?? '?'})`,
-  );
-  readonly statusPillClass = computed(() =>
-    this.queryStatus() === 'success'
-      ? 'bg-emerald-500/10 text-emerald-400'
-      : 'bg-error/10 text-error',
-  );
-  readonly statusDotClass = computed(() =>
-    this.queryStatus() === 'success' ? 'bg-emerald-400' : 'bg-error',
-  );
+  readonly statusText = computed(() => this.setStatus("statusText"));
+    
+  readonly statusPillClass = computed(() => this.setStatus("statusPillClass"));
+   
+  readonly statusDotClass = computed(() => this.setStatus("statusDotClass"));
+   
   private readonly timeFormatter = new Intl.DateTimeFormat('es', {
     hour: '2-digit',
     minute: '2-digit',
@@ -135,6 +115,7 @@ LIMIT 10;`;
       .subscribe({
         next: (connections) => this.connectionGroups.set(this.groupByDbName(connections)),
       });
+      this.queryStatus.set('');
   }
 
   onConnectionChange(event: Event): void {
@@ -142,7 +123,7 @@ LIMIT 10;`;
   }
 
   onPromptInput(event: Event): void {
-    this.promptText = (event.target as HTMLInputElement).value;
+    this.promptText.set((event.target as HTMLInputElement).value);
   }
 
   onPromptKeydown(event: Event): void {
@@ -158,14 +139,14 @@ LIMIT 10;`;
     }
 
     const payload: ConvertQueryRequestInterface = {
-      preguntaUsuario: this.promptText.trim(),
+      preguntaUsuario: this.promptText().trim(),
       dbConnectionId: this.selectedConnectionId(),
     };
 
     this.isConverting.set(true);
 
     const startedAt = performance.now();
-
+    this.queryStatus.set('on-going');
     this.queryExecuteService
       .convertir(payload)
       .pipe(
@@ -189,6 +170,50 @@ LIMIT 10;`;
       });
   }
 
+  private setStatus(statusDestination: string): string {
+    switch (this.queryStatus()) {
+      case 'success':
+        if(statusDestination === "statusText") {
+          return 'Exitosa (200 OK)';
+        }
+        if(statusDestination === "statusPillClass") {
+          return 'bg-emerald-500/10 text-emerald-400';
+        }
+        if(statusDestination === "statusDotClass") {
+          return 'bg-emerald-400';
+        } 
+        break;
+      case 'error':
+        this.rawSql = "Error al convertir la consulta a SQL. Por favor, revise el prompt y la conexión seleccionada.";        
+        if(statusDestination === "statusPillClass") {
+          return 'bg-error/10 text-error';
+        }
+        if(statusDestination === "statusDotClass") {
+          return 'bg-error';
+        }
+        if(statusDestination === "statusText") {
+          return `Fallida (Cod error ${this.errorCode() ?? '?'})`;
+        }
+        break;
+      case 'on-going':
+        this.rawSql = "Convirtiendo consulta a SQL...";
+        if(statusDestination === "statusText") {
+          return 'En curso';
+        }
+        if(statusDestination === "statusPillClass") {
+          return 'bg-surface-container-low text-on-surface-variant';
+        }
+        if(statusDestination === "statusDotClass") {
+          return 'bg-on-surface-variant';
+        }
+        break;
+      default:
+        this.rawSql = "Aquí se mostrará el SQL generado a partir del prompt.";        
+    }
+    // Ensure a string is always returned for all control paths
+    return '';
+  }
+
   private groupByDbName(connections: ConnectionResponseInterface[]): ConnectionGroup[] {
     const groups = new Map<string, ConnectionGroup>();
 
@@ -205,7 +230,7 @@ LIMIT 10;`;
   }
 
   async copyPrompt(): Promise<void> {
-    const text = String(this.promptText).replace(/^"|"$/g, '');
+    const text = String(this.promptText()).replace(/^"|"$/g, '');
     await this.exportService.writeToClipboard(text);
     this.temporarilySetPromptFeedback('¡Copiado!');
   }
@@ -243,5 +268,15 @@ LIMIT 10;`;
     const prev = this.sqlCopyFeedback;
     this.sqlCopyFeedback = message;
     setTimeout(() => { this.sqlCopyFeedback = prev; }, 2000);
+  }
+
+  resetForm(): void {
+    this.promptText.set('');
+    this.selectedConnectionId.set('');
+    this.queryResult.set(null);
+    this.queryStatus.set('');
+    this.errorCode.set(null);
+    this.elapsedMs.set(null);
+    this.rawSql = `Aquí se mostrará el SQL generado a partir del prompt.`;
   }
 }
